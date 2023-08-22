@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Miniob</title>
+    <link href="/2023/08/22/Miniob/"/>
+    <url>/2023/08/22/Miniob/</url>
+    
+    <content type="html"><![CDATA[<h1>MiniOb环境搭建</h1><blockquote><p>本文简介MiniOb的环境搭建</p></blockquote><p>前提条件：详见<a href="https://oceanbase.github.io/miniob/game/gitee-instructions.html">https://oceanbase.github.io/miniob/game/gitee-instructions.html</a></p><ol><li><p>build libevent</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">git submodule add https://github.com/libevent/libevent deps/libevent<br>cd deps<br>cd libevent<br>git checkout release-2.1.12-stable<br>mkdir build<br>cd build<br>cmake .. -DEVENT__DISABLE_OPENSSL=ON<br>make<br>sudo make install<br></code></pre></td></tr></table></figure></li><li><p>build google_test</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">git submodule add https://github.com/google/googletest deps/googletest<br>cd deps<br>cd googletest<br>mkdir build<br>cd build<br>cmake ..<br>make<br>sudo make install<br></code></pre></td></tr></table></figure></li><li><p>build jsoncpp</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">git submodule add https://github.com/open-source-parsers/jsoncpp.git deps/jsoncpp<br>cd deps<br>cd jsoncpp<br>mkdir build<br>cd build<br>cmake -DJSONCPP_WITH_TESTS=OFF -DJSONCPP_WITH_POST_BUILD_UNITTEST=OFF ..<br>make<br>sudo make install<br></code></pre></td></tr></table></figure></li><li><p>build miniob</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd `project home`<br>mkdir build<br>cd build<br><span class="hljs-meta prompt_"># </span><span class="language-bash">建议开启DEBUG模式编译，更方便调试</span><br>cmake .. -DDEBUG=ON<br>make<br></code></pre></td></tr></table></figure><p>上述操作完成后进行git push即可进行提测。</p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>Database</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Database</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>C++学习</title>
     <link href="/2023/08/08/Cpp/"/>
     <url>/2023/08/08/Cpp/</url>
