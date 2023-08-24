@@ -16,26 +16,26 @@
   <meta name="author" content="BlueHole">
   <meta name="keywords" content="blog">
   
-    <meta name="description" content="MiniOb环境搭建  本文简介MiniOb的环境搭建  前提条件：详见https:&#x2F;&#x2F;oceanbase.github.io&#x2F;miniob&#x2F;game&#x2F;gitee-instructions.html   build libevent 123456789git submodule add https:&#x2F;&#x2F;github.com&#x2F;libevent&#x2F;libevent deps&#x2F;libeventcd dep">
+    <meta name="description" content="CMU15-445环境搭建及实操  官网：https:&#x2F;&#x2F;15445.courses.cs.cmu.edu&#x2F;spring2023&#x2F;  前提 提前安装好WSL2，这里我使用的系统是Ubuntu 22.04 LTS版 CMU15-445必需的环境：  git clang gdb cmake  1sudo apt install git cmake clang gdb 配置CMU15-445   创建一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Miniob环境搭建">
-<meta property="og:url" content="https://codingwkang.github.io/2023/08/22/Miniob/index.html">
+<meta property="og:title" content="CMU15-445">
+<meta property="og:url" content="https://codingwkang.github.io/2023/08/24/CMU/index.html">
 <meta property="og:site_name" content="编程の路">
-<meta property="og:description" content="MiniOb环境搭建  本文简介MiniOb的环境搭建  前提条件：详见https:&#x2F;&#x2F;oceanbase.github.io&#x2F;miniob&#x2F;game&#x2F;gitee-instructions.html   build libevent 123456789git submodule add https:&#x2F;&#x2F;github.com&#x2F;libevent&#x2F;libevent deps&#x2F;libeventcd dep">
+<meta property="og:description" content="CMU15-445环境搭建及实操  官网：https:&#x2F;&#x2F;15445.courses.cs.cmu.edu&#x2F;spring2023&#x2F;  前提 提前安装好WSL2，这里我使用的系统是Ubuntu 22.04 LTS版 CMU15-445必需的环境：  git clang gdb cmake  1sudo apt install git cmake clang gdb 配置CMU15-445   创建一">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://codingwkang.github.io/imgs/miniob.png">
-<meta property="article:published_time" content="2023-08-22T07:37:24.000Z">
-<meta property="article:modified_time" content="2023-08-24T10:30:13.057Z">
+<meta property="og:image" content="https://codingwkang.github.io/imgs/CMU.png">
+<meta property="article:published_time" content="2023-08-24T10:29:38.000Z">
+<meta property="article:modified_time" content="2023-08-24T10:54:26.684Z">
 <meta property="article:author" content="BlueHole">
 <meta property="article:tag" content="Database">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://codingwkang.github.io/imgs/miniob.png">
+<meta name="twitter:image" content="https://codingwkang.github.io/imgs/CMU.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Miniob环境搭建 | 编程の路</title>
+  <title>CMU15-445 | 编程の路</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Miniob环境搭建"></span>
+            <span id="subtitle" data-typed-text="CMU15-445"></span>
           
         </div>
 
@@ -233,8 +233,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-22 15:37" pubdate>
-          2023年8月22日 下午
+        <time datetime="2023-08-24 18:29" pubdate>
+          2023年8月24日 晚上
         </time>
       </span>
     
@@ -245,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          780 字
+          914 字
         
       </span>
     
@@ -256,7 +256,7 @@
         
         
         
-          7 分钟
+          8 分钟
         
       </span>
     
@@ -301,12 +301,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Miniob环境搭建</h1>
+            <h1 id="seo-header">CMU15-445</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：24 分钟前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -314,30 +314,81 @@
             
               <div class="markdown-body">
                 
-                <h1>MiniOb环境搭建</h1>
+                <h1>CMU15-445环境搭建及实操</h1>
 <blockquote>
-<p>本文简介MiniOb的环境搭建</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://15445.courses.cs.cmu.edu/spring2023/">https://15445.courses.cs.cmu.edu/spring2023/</a></p>
 </blockquote>
-<p>前提条件：详见<a target="_blank" rel="noopener" href="https://oceanbase.github.io/miniob/game/gitee-instructions.html">https://oceanbase.github.io/miniob/game/gitee-instructions.html</a></p>
+<h2 id="前提">前提</h2>
+<p>提前安装好WSL2，这里我使用的系统是Ubuntu 22.04 LTS版</p>
+<p>CMU15-445必需的环境：</p>
+<ol>
+<li>git</li>
+<li>clang</li>
+<li>gdb</li>
+<li>cmake</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install git cmake clang gdb<br></code></pre></td></tr></table></figure>
+<h3 id="配置CMU15-445">配置CMU15-445</h3>
 <ol>
 <li>
-<p>build libevent</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">git submodule add https://github.com/libevent/libevent deps/libevent<br>cd deps<br>cd libevent<br>git checkout release-2.1.12-stable<br>mkdir build<br>cd build<br>cmake .. -DEVENT__DISABLE_OPENSSL=ON<br>make<br>sudo make install<br></code></pre></td></tr></table></figure>
+<p>创建一个Github私有库</p>
 </li>
 <li>
-<p>build google_test</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">git submodule add https://github.com/google/googletest deps/googletest<br>cd deps<br>cd googletest<br>mkdir build<br>cd build<br>cmake ..<br>make<br>sudo make install<br></code></pre></td></tr></table></figure>
+<p>克隆公开的BusTub仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">clone</span> --bare https://github.com/cmu-db/bustub.git bustub-public</span><br></code></pre></td></tr></table></figure>
 </li>
 <li>
-<p>build jsoncpp</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">git submodule add https://github.com/open-source-parsers/jsoncpp.git deps/jsoncpp<br>cd deps<br>cd jsoncpp<br>mkdir build<br>cd build<br>cmake -DJSONCPP_WITH_TESTS=OFF -DJSONCPP_WITH_POST_BUILD_UNITTEST=OFF ..<br>make<br>sudo make install<br></code></pre></td></tr></table></figure>
+<p>将公共的BusTub存储库push到自己的私有BusTub存储库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd bustub-public<br>git push 你的私有库的git仓库地址 master<br>rm -rf bustub-public<br></code></pre></td></tr></table></figure>
 </li>
 <li>
-<p>build miniob</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd `project home`<br>mkdir build<br>cd build<br><span class="hljs-meta prompt_"># </span><span class="language-bash">建议开启DEBUG模式编译，更方便调试</span><br>cmake .. -DDEBUG=ON<br>make<br></code></pre></td></tr></table></figure>
-<p>上述操作完成后进行git push即可进行提测。</p>
+<p>将私有存储库克隆到使用的开发计算机中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git clone 你的私有库的git仓库地址<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>从私有存储库的项目设置中禁用 GitHub Actions</strong>，否则您可能会用完 GitHub Actions 配额</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Settings &gt; Actions &gt; General &gt; Actions permissions &gt; Disable actions.<br></code></pre></td></tr></table></figure>
 </li>
 </ol>
+<h3 id="编译CMU15-445">编译CMU15-445</h3>
+<ol>
+<li>
+<p>为了确保您的计算机上有正确的软件包，请运行以下脚本来自动安装它们</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo build_support/packages.sh<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>然后运行以下命令来构建系统</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir build<br>cd build<br>cmake ..<br>make<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>如果要在调试模式下编译系统，请将以下标志传递给 cmake,默认情况下，这会启用<a target="_blank" rel="noopener" href="https://github.com/google/sanitizers">AddressSanitizer</a>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">cmake -DCMAKE_BUILD_TYPE=Debug ..<br>make -j`nproc`<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>测试</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd build<br>make check-tests<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="C-Primer">C++ Primer</h2>
+<blockquote>
+<p>详见<a target="_blank" rel="noopener" href="https://15445.courses.cs.cmu.edu/spring2023/project0/">C++ Primer</a></p>
+</blockquote>
+<h2 id="Buffer-Pool-Manager">Buffer Pool Manager</h2>
+<blockquote>
+<p>详见<a target="_blank" rel="noopener" href="https://15445.courses.cs.cmu.edu/spring2023/project1/">Buffer Pool Manager</a></p>
+</blockquote>
+<h2 id="B-Tree-Index">B+Tree Index</h2>
+<blockquote>
+<p>详见<a target="_blank" rel="noopener" href="https://15445.courses.cs.cmu.edu/spring2023/project2/">B+Tree Index</a></p>
+</blockquote>
+<h2 id="Query-Execution">Query Execution</h2>
+<blockquote>
+<p>详见<a target="_blank" rel="noopener" href="https://15445.courses.cs.cmu.edu/spring2023/project3/">Query Execution</a></p>
+</blockquote>
+<h2 id="Concurrency-Control">Concurrency Control</h2>
+<blockquote>
+<p>详见<a target="_blank" rel="noopener" href="https://15445.courses.cs.cmu.edu/spring2023/project4/">Concurrency Control</a></p>
+</blockquote>
 
                 
               </div>
@@ -383,8 +434,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Miniob环境搭建</div>
-      <div>https://codingwkang.github.io/2023/08/22/Miniob/</div>
+      <div>CMU15-445</div>
+      <div>https://codingwkang.github.io/2023/08/24/CMU/</div>
     </div>
     <div class="license-meta">
       
@@ -396,7 +447,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月22日</div>
+          <div>2023年8月24日</div>
         </div>
       
       
@@ -439,18 +490,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/24/Git/" title="Git学习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git学习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/08/Cpp/" title="C++学习">
-                        <span class="hidden-mobile">C++学习</span>
+                      <a href="/2023/08/24/Git/" title="Git学习">
+                        <span class="hidden-mobile">Git学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
