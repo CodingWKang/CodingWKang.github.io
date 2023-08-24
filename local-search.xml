@@ -8,7 +8,7 @@
     <link href="/2023/08/24/Git/"/>
     <url>/2023/08/24/Git/</url>
     
-    <content type="html"><![CDATA[<h1>Git学习</h1><h2 id="关于版本控制">关于版本控制</h2><p>什么是“版本控制”？版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p><p><img src="./imgs/Git/local.png" alt="本地版本控制"></p>]]></content>
+    <content type="html"><![CDATA[<h1>Git学习</h1><h2 id="关于版本控制">关于版本控制</h2><p>什么是“版本控制”？版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p><p><img src="/imgs/Git/local.png" alt="本地版本控制"></p>]]></content>
     
     
     <categories>
