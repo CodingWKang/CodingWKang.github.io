@@ -33,7 +33,7 @@
     <link href="/2023/08/28/CMake/"/>
     <url>/2023/08/28/CMake/</url>
     
-    <content type="html"><![CDATA[<h1>CMake学习</h1><blockquote><p><a href="https://cmake.org/cmake/help/latest/">CMake官方文档</a></p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1>CMake学习</h1><blockquote><p><a href="https://cmake.org/cmake/help/latest/">CMake官方文档</a></p></blockquote><h2 id="常用命令">常用命令</h2><p><code>cmake_minimum_required</code>：设置项目所需要的cmake的最低版本</p><p><code>project</code>：设置项目名及版本信息</p><p><code>add_executable</code>：使用指定的源文件生成可执行文件</p><p><code>set(CMAKE_CXX_STANDARD 14)</code>:指定 C++ 标准，这里是使用C++14</p><p><code>set(CMAKE_CXX_STANDARD_REQUIRED True)</code>：指定是否<code>CXX_STANDARD</code>是必须的</p><p><code>configure_file</code>:将文件复制到另一个位置并修改其内容</p><p><code>target_include_directories</code>:指定编译给定目标时要使用的包含目录</p><p><code>target_link_libraries</code>：指定链接给定目标或其依赖项时要使用的库或标志</p>]]></content>
     
     
     <categories>
