@@ -16,26 +16,26 @@
   <meta name="author" content="BlueHole">
   <meta name="keywords" content="blog">
   
-    <meta name="description" content="刷题之路  记录自己的刷题历程  牛客 - 2023&#x2F;08&#x2F;27 共计刷题1道">
+    <meta name="description" content="PostgreSQL编译安装 前提  安装好的WSL2 Ubuntu 22.04 LTS版本  1234# Ubuntu环境下sudo apt-get install build-essential sudo apt install libreadline-dev sudo apt-get install zlib1g.dev 下载Pg的源码  Pg源码地址  选择所需要的源码进行下载，下载完成后">
 <meta property="og:type" content="article">
-<meta property="og:title" content="刷题之路">
-<meta property="og:url" content="https://codingwkang.github.io/2023/08/27/Nowcoder/index.html">
+<meta property="og:title" content="Postgresql编译安装">
+<meta property="og:url" content="https://codingwkang.github.io/2023/08/28/Postgresql/index.html">
 <meta property="og:site_name" content="编程の路">
-<meta property="og:description" content="刷题之路  记录自己的刷题历程  牛客 - 2023&#x2F;08&#x2F;27 共计刷题1道">
+<meta property="og:description" content="PostgreSQL编译安装 前提  安装好的WSL2 Ubuntu 22.04 LTS版本  1234# Ubuntu环境下sudo apt-get install build-essential sudo apt install libreadline-dev sudo apt-get install zlib1g.dev 下载Pg的源码  Pg源码地址  选择所需要的源码进行下载，下载完成后">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://codingwkang.github.io/imgs/Nowcoder.png">
-<meta property="article:published_time" content="2023-08-27T12:19:17.000Z">
-<meta property="article:modified_time" content="2023-08-27T12:31:06.610Z">
+<meta property="og:image" content="https://codingwkang.github.io/imgs/Postgresql.png">
+<meta property="article:published_time" content="2023-08-28T12:34:32.000Z">
+<meta property="article:modified_time" content="2023-08-28T12:46:50.451Z">
 <meta property="article:author" content="BlueHole">
-<meta property="article:tag" content="Code">
+<meta property="article:tag" content="Database">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://codingwkang.github.io/imgs/Nowcoder.png">
+<meta name="twitter:image" content="https://codingwkang.github.io/imgs/Postgresql.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>刷题之路 | 编程の路</title>
+  <title>Postgresql编译安装 | 编程の路</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="刷题之路"></span>
+            <span id="subtitle" data-typed-text="Postgresql编译安装"></span>
           
         </div>
 
@@ -233,8 +233,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-27 20:19" pubdate>
-          2023年8月27日 晚上
+        <time datetime="2023-08-28 20:34" pubdate>
+          2023年8月28日 晚上
         </time>
       </span>
     
@@ -245,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          32 字
+          845 字
         
       </span>
     
@@ -256,7 +256,7 @@
         
         
         
-          1 分钟
+          8 分钟
         
       </span>
     
@@ -301,12 +301,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">刷题之路</h1>
+            <h1 id="seo-header">Postgresql编译安装</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 天前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -314,12 +314,31 @@
             
               <div class="markdown-body">
                 
-                <h1>刷题之路</h1>
+                <h1>PostgreSQL编译安装</h1>
+<h2 id="前提">前提</h2>
+<ul>
+<li>安装好的WSL2</li>
+<li>Ubuntu 22.04 LTS版本</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">Ubuntu环境下</span><br>sudo apt-get install build-essential <br>sudo apt install libreadline-dev <br>sudo apt-get install zlib1g.dev<br></code></pre></td></tr></table></figure>
+<h2 id="下载Pg的源码">下载Pg的源码</h2>
 <blockquote>
-<p>记录自己的刷题历程</p>
+<p><a target="_blank" rel="noopener" href="https://www.postgresql.org/ftp/source/">Pg源码地址</a></p>
 </blockquote>
-<h2 id="牛客">牛客</h2>
-<h6 id="2023-08-27-共计刷题1道">- 2023/08/27 共计刷题<code>1</code>道</h6>
+<p>选择所需要的源码进行下载，下载完成后进行解压,例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget https://ftp.postgresql.org/pub/source/v15.4/postgresql-15.4.tar.gz<br>tar -zxvf postgresql-15.4.tar.gz<br>cd postgresql-15.4<br>mv postgresql-15.4 postgresql15<br></code></pre></td></tr></table></figure>
+<h2 id="进行编译">进行编译</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">./configure --enable-debug<br>make -j<br>sudo make install<br></code></pre></td></tr></table></figure>
+<p>由于Pg不能在root用户下进行启动,这里添加一个postgres用户并设置其密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">adduser postgres<br>passwd postgres<br></code></pre></td></tr></table></figure>
+<h2 id="进行数据库配置">进行数据库配置</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">创建pg的数据存放目录</span><br>sudo mkdir -p /var/postgresql/data<br><span class="hljs-meta prompt_"># </span><span class="language-bash">对/var/postgresql和/usr/local/pgsql进行授权</span><br>sudo chown postgres:postgres /var/postgresql -R<br>sudo chown postgres:postgres /usr/local/pgsql -R<br></code></pre></td></tr></table></figure>
+<h2 id="切换用户并配置环境变量">切换用户并配置环境变量</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">su - postgres<br>export PATH=/usr/local/pgsql/bin:$PATH<br></code></pre></td></tr></table></figure>
+<h2 id="初始化数据库并启动服务">初始化数据库并启动服务</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">使用-D指定初始化数据库存放的数据目录</span><br>initdb -D /var/postgresql/data<br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用-l指定pg日志存放的目录</span><br>pg_ctl -D /var/postgresql/data -l /var/postgresql/logfile start<br></code></pre></td></tr></table></figure>
+<h2 id="连接Pg">连接Pg</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">psql <br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -338,7 +357,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Code/" class="category-chain-item">Code</a>
+  <a href="/categories/Database/" class="category-chain-item">Database</a>
   
   
 
@@ -353,7 +372,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Code/" class="print-no-link">#Code</a>
+        <a href="/tags/Database/" class="print-no-link">#Database</a>
       
     </div>
   
@@ -365,8 +384,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>刷题之路</div>
-      <div>https://codingwkang.github.io/2023/08/27/Nowcoder/</div>
+      <div>Postgresql编译安装</div>
+      <div>https://codingwkang.github.io/2023/08/28/Postgresql/</div>
     </div>
     <div class="license-meta">
       
@@ -378,13 +397,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月27日</div>
+          <div>2023年8月28日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年8月27日</div>
+          <div>2023年8月28日</div>
         </div>
       
       
@@ -421,18 +440,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/28/CMake/" title="CMake学习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CMake学习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/24/CMU/" title="CMU15-445">
-                        <span class="hidden-mobile">CMU15-445</span>
+                      <a href="/2023/08/28/CMake/" title="CMake学习">
+                        <span class="hidden-mobile">CMake学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

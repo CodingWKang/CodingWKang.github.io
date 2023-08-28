@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>Postgresql编译安装</title>
+    <link href="/2023/08/28/Postgresql/"/>
+    <url>/2023/08/28/Postgresql/</url>
+    
+    <content type="html"><![CDATA[<h1>PostgreSQL编译安装</h1><h2 id="前提">前提</h2><ul><li>安装好的WSL2</li><li>Ubuntu 22.04 LTS版本</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">Ubuntu环境下</span><br>sudo apt-get install build-essential <br>sudo apt install libreadline-dev <br>sudo apt-get install zlib1g.dev<br></code></pre></td></tr></table></figure><h2 id="下载Pg的源码">下载Pg的源码</h2><blockquote><p><a href="https://www.postgresql.org/ftp/source/">Pg源码地址</a></p></blockquote><p>选择所需要的源码进行下载，下载完成后进行解压,例如：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget https://ftp.postgresql.org/pub/source/v15.4/postgresql-15.4.tar.gz<br>tar -zxvf postgresql-15.4.tar.gz<br>cd postgresql-15.4<br>mv postgresql-15.4 postgresql15<br></code></pre></td></tr></table></figure><h2 id="进行编译">进行编译</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">./configure --enable-debug<br>make -j<br>sudo make install<br></code></pre></td></tr></table></figure><p>由于Pg不能在root用户下进行启动,这里添加一个postgres用户并设置其密码</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">adduser postgres<br>passwd postgres<br></code></pre></td></tr></table></figure><h2 id="进行数据库配置">进行数据库配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">创建pg的数据存放目录</span><br>sudo mkdir -p /var/postgresql/data<br><span class="hljs-meta prompt_"># </span><span class="language-bash">对/var/postgresql和/usr/local/pgsql进行授权</span><br>sudo chown postgres:postgres /var/postgresql -R<br>sudo chown postgres:postgres /usr/local/pgsql -R<br></code></pre></td></tr></table></figure><h2 id="切换用户并配置环境变量">切换用户并配置环境变量</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">su - postgres<br>export PATH=/usr/local/pgsql/bin:$PATH<br></code></pre></td></tr></table></figure><h2 id="初始化数据库并启动服务">初始化数据库并启动服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">使用-D指定初始化数据库存放的数据目录</span><br>initdb -D /var/postgresql/data<br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用-l指定pg日志存放的目录</span><br>pg_ctl -D /var/postgresql/data -l /var/postgresql/logfile start<br></code></pre></td></tr></table></figure><h2 id="连接Pg">连接Pg</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">psql <br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Database</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Database</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>CMake学习</title>
+    <link href="/2023/08/28/CMake/"/>
+    <url>/2023/08/28/CMake/</url>
+    
+    <content type="html"><![CDATA[<h1>CMake学习</h1><blockquote><p><a href="https://cmake.org/cmake/help/latest/">CMake官方文档</a></p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>C++</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>C++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>刷题之路</title>
     <link href="/2023/08/27/Nowcoder/"/>
     <url>/2023/08/27/Nowcoder/</url>
