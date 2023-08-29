@@ -16,16 +16,16 @@
   <meta name="author" content="BlueHole">
   <meta name="keywords" content="blog">
   
-    <meta name="description" content="PostgreSQL编译安装 前提  安装好的WSL2 Ubuntu 22.04 LTS版本  1234# Ubuntu环境下sudo apt-get install build-essential sudo apt install libreadline-dev sudo apt-get install zlib1g.dev 下载Pg的源码  Pg源码地址  选择所需要的源码进行下载，下载完成后">
+    <meta name="description" content="PostgreSQL编译安装 Pg编译安装 前提  安装好的WSL2 Ubuntu 22.04 LTS版本  1234# Ubuntu环境下sudo apt-get install build-essential sudo apt install libreadline-dev sudo apt-get install zlib1g.dev 下载Pg的源码  Pg源码地址  选择所需要的源码进行下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Postgresql编译安装">
 <meta property="og:url" content="https://codingwkang.github.io/2023/08/28/Postgresql/index.html">
 <meta property="og:site_name" content="编程の路">
-<meta property="og:description" content="PostgreSQL编译安装 前提  安装好的WSL2 Ubuntu 22.04 LTS版本  1234# Ubuntu环境下sudo apt-get install build-essential sudo apt install libreadline-dev sudo apt-get install zlib1g.dev 下载Pg的源码  Pg源码地址  选择所需要的源码进行下载，下载完成后">
+<meta property="og:description" content="PostgreSQL编译安装 Pg编译安装 前提  安装好的WSL2 Ubuntu 22.04 LTS版本  1234# Ubuntu环境下sudo apt-get install build-essential sudo apt install libreadline-dev sudo apt-get install zlib1g.dev 下载Pg的源码  Pg源码地址  选择所需要的源码进行下">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://codingwkang.github.io/imgs/Postgresql.png">
 <meta property="article:published_time" content="2023-08-28T12:34:32.000Z">
-<meta property="article:modified_time" content="2023-08-28T15:44:39.553Z">
+<meta property="article:modified_time" content="2023-08-29T06:26:43.967Z">
 <meta property="article:author" content="BlueHole">
 <meta property="article:tag" content="Database">
 <meta name="twitter:card" content="summary_large_image">
@@ -245,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          845 字
+          3.4k 字
         
       </span>
     
@@ -256,7 +256,7 @@
         
         
         
-          8 分钟
+          29 分钟
         
       </span>
     
@@ -306,7 +306,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：14 小时前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -315,30 +315,43 @@
               <div class="markdown-body">
                 
                 <h1>PostgreSQL编译安装</h1>
-<h2 id="前提">前提</h2>
+<h2 id="Pg编译安装">Pg编译安装</h2>
+<h3 id="前提">前提</h3>
 <ul>
 <li>安装好的WSL2</li>
 <li>Ubuntu 22.04 LTS版本</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">Ubuntu环境下</span><br>sudo apt-get install build-essential <br>sudo apt install libreadline-dev <br>sudo apt-get install zlib1g.dev<br></code></pre></td></tr></table></figure>
-<h2 id="下载Pg的源码">下载Pg的源码</h2>
+<h3 id="下载Pg的源码">下载Pg的源码</h3>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.postgresql.org/ftp/source/">Pg源码地址</a></p>
 </blockquote>
 <p>选择所需要的源码进行下载，下载完成后进行解压,例如：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget https://ftp.postgresql.org/pub/source/v15.4/postgresql-15.4.tar.gz<br>tar -zxvf postgresql-15.4.tar.gz<br>cd postgresql-15.4<br>mv postgresql-15.4 postgresql15<br></code></pre></td></tr></table></figure>
-<h2 id="进行编译">进行编译</h2>
+<h3 id="进行编译">进行编译</h3>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">./configure --enable-debug<br>make -j<br>sudo make install<br></code></pre></td></tr></table></figure>
 <p>由于Pg不能在root用户下进行启动,这里添加一个postgres用户并设置其密码</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">adduser postgres<br>passwd postgres<br></code></pre></td></tr></table></figure>
-<h2 id="进行数据库配置">进行数据库配置</h2>
+<h3 id="进行数据库配置（以下步骤不用做）">进行数据库配置（以下步骤不用做）</h3>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">创建pg的数据存放目录</span><br>sudo mkdir -p /var/postgresql/data<br><span class="hljs-meta prompt_"># </span><span class="language-bash">对/var/postgresql和/usr/local/pgsql进行授权</span><br>sudo chown postgres:postgres /var/postgresql -R<br>sudo chown postgres:postgres /usr/local/pgsql -R<br></code></pre></td></tr></table></figure>
-<h2 id="切换用户并配置环境变量">切换用户并配置环境变量</h2>
+<h3 id="切换用户并配置环境变量">切换用户并配置环境变量</h3>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">su - postgres<br>export PATH=/usr/local/pgsql/bin:$PATH<br></code></pre></td></tr></table></figure>
-<h2 id="初始化数据库并启动服务">初始化数据库并启动服务</h2>
+<h3 id="初始化数据库并启动服务">初始化数据库并启动服务</h3>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">使用-D指定初始化数据库存放的数据目录</span><br>initdb -D /var/postgresql/data<br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用-l指定pg日志存放的目录</span><br>pg_ctl -D /var/postgresql/data -l /var/postgresql/logfile start<br></code></pre></td></tr></table></figure>
-<h2 id="连接Pg">连接Pg</h2>
+<h3 id="连接Pg">连接Pg</h3>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">psql <br></code></pre></td></tr></table></figure>
+<h2 id="VSCode编译调试Pg">VSCode编译调试Pg</h2>
+<h3 id="前提-2">前提</h3>
+<p>配置好pg的环境变量可以编辑<code>/etc/profile</code>在最后一行添加环境变量，如：<code>export PATH=$PATH:/usr/local/pgsql/bin</code></p>
+<p>安装好VSCode的插件拓展，包括<code>C/C++、C/C++ Extension Pack、CMake、CMakeTools</code>；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">初始化目录为具有super权限的用户的目录下，这里我选择在Postgresql15目录下创建data目录</span><br>initdb -D /home/bluehole/postgresql15/data<br><span class="hljs-meta prompt_"># </span><span class="language-bash">启动服务</span><br>pg_ctl -D /home/bluehole/postgresql15/data -l logfile start<br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用createdb创建数据库</span><br>createdb &lt;dbname&gt;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">启动服务后登录数据库</span><br>psql -U &lt;username&gt; &lt;dbname&gt;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">创建表以及插入数据</span><br>create table t1(id integer, name text);<br>insert into t1 values(1, &#x27;pgsql1&#x27;);<br>insert into t1 values(2, &#x27;pgsql2&#x27;);<br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用这条语句活得pg的进程<span class="hljs-built_in">id</span></span><br>select pg_backend_pid();<br></code></pre></td></tr></table></figure>
+<h3 id="launch-json配置文件">launch.json配置文件</h3>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.2.0&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;configurations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;postgres --help&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cppdbg&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;request&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;launch&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/usr/local/pgsql/bin/postgres&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>                <span class="hljs-string">&quot;--help&quot;</span><br>            <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;stopAtEntry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;cwd&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;fileDirname&#125;&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;environment&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;externalConsole&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;MIMode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;gdb&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;setupCommands&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>                <span class="hljs-punctuation">&#123;</span><br>                    <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Enable pretty-printing for gdb&quot;</span><span class="hljs-punctuation">,</span><br>                    <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;-enable-pretty-printing&quot;</span><span class="hljs-punctuation">,</span><br>                    <span class="hljs-attr">&quot;ignoreFailures&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>                <span class="hljs-punctuation">&#125;</span><br>            <span class="hljs-punctuation">]</span><br>        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;initdb&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cppdbg&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;request&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;launch&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/usr/local/pgsql/bin/initdb&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>                <span class="hljs-string">&quot;-D&quot;</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-string">&quot;/home/bluehole/postgresql15/data&quot;</span><br>            <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;stopAtEntry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;cwd&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;fileDirname&#125;&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;environment&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;externalConsole&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;MIMode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;gdb&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;setupCommands&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>                <span class="hljs-punctuation">&#123;</span><br>                    <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Enable pretty-printing for gdb&quot;</span><span class="hljs-punctuation">,</span><br>                    <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;-enable-pretty-printing&quot;</span><span class="hljs-punctuation">,</span><br>                    <span class="hljs-attr">&quot;ignoreFailures&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>                <span class="hljs-punctuation">&#125;</span><br>            <span class="hljs-punctuation">]</span><br>        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;postgres backend&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cppdbg&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;request&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;attach&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/usr/local/pgsql/bin/postgres&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;processId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;command:pickProcess&#125;&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;MIMode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;gdb&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;setupCommands&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>                <span class="hljs-punctuation">&#123;</span><br>                    <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Enable pretty-printing for gdb&quot;</span><span class="hljs-punctuation">,</span><br>                    <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;-enable-pretty-printing&quot;</span><span class="hljs-punctuation">,</span><br>                    <span class="hljs-attr">&quot;ignoreFailures&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>                <span class="hljs-punctuation">&#125;</span><br>            <span class="hljs-punctuation">]</span><br>        <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>如图所示则表示调试成功：</p>
+<p><img src="/imgs/Git/Pg%E6%9F%A5%E8%AF%A2%E8%B0%83%E8%AF%95.png" srcset="/img/loading.gif" lazyload alt="image-20230829142424217"></p>
+<blockquote>
+<p>Tips：调试需要启动两个终端，一个已经登陆的客户端，另一个是点击Debug所自动启动的终端</p>
+</blockquote>
 
                 
               </div>
@@ -403,7 +416,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年8月28日</div>
+          <div>2023年8月29日</div>
         </div>
       
       
