@@ -120,7 +120,7 @@ dark_mode:
   # 默认的选项（当用户手动切换后则不再按照默认模式），选择 `auto` 会优先遵循 prefers-color-scheme，其次按用户本地时间 18 点到次日 6 点之间进入暗色模式
   # Default option (when the visitor switches manually, the default mode is no longer followed), choosing `auto` will give priority to prefers-color-scheme, and then enter the dark mode from 18:00 to 6:00 in the visitor’s local time
   # Options: auto | light | dark
-  default: dark
+  default: auto
 
 # 主题颜色配置，其他不生效的地方请使用自定义 css 解决，配色可以在下方链接中获得启发
 # Theme color, please use custom CSS to solve other colors, color schema can be inspired by the links below
@@ -494,7 +494,7 @@ index:
 
     # 为空则按 hexo config.subtitle 显示
     # If empty, text based on `subtitle` in hexo config
-    text: "手上没有剑和有剑不用是两码事!"
+    text: "用感性感受生活，用理性思考人生！"
 
     # 通过 API 接口作为首页副标题的内容，必须返回的是 JSON 格式，如果请求失败则按 text 字段显示，该功能必须先开启 typing 打字机功能
     # Subtitle of the homepage through the API, must be returned a JSON. If the request fails, it will be displayed in `text` value. This feature must first enable the typing animation
@@ -1020,14 +1020,26 @@ links:
   # Member item of page
   items:
     - {
-      title: "Author",
+      title: "个人博客",
       intro: "编程の路",
-      link: "https://github.com/CodingWKang",
-      avatar: "/img/avatar.png"
+      link: "https://wukang.netlify.app/",
+      avatar: "/img/blog.png"
+    }
+    - {
+      title: "博客园",
+      intro: "编程の路",
+      link: "https://www.cnblogs.com/bluehole/",
+      avatar: "/img/cnblogs.png"
+    }
+    - {
+      title: "科研",
+      intro: "编程の路",
+      link: "https://wuk.netlify.app/",
+      avatar: "/img/research.png"
     }
   # 当成员头像加载失败时，替换为指定图片
   # When the member avatar fails to load, replace the specified image
-  onerror_avatar: /img/avatar.png
+  onerror_avatar: /img/default.png
 
   # 友链下方自定义区域，支持 HTML，可插入例如申请友链的文字
   # Custom content at the bottom of the links

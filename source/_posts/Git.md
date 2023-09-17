@@ -1,10 +1,10 @@
 ---
-title: Git
+title: Git学习
 date: 2023-08-24 10:13:32
 tags:
-- git
+- Git
 categories: 
-- git
+- Git
 index_img: /imgs/Git.png
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Miniob
+title: Miniob环境搭建
 date: 2023-08-22 15:37:24
 tags:
 - Database
