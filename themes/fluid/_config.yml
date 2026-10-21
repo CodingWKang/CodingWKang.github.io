@@ -8,11 +8,11 @@
 
 # 用于浏览器标签的图标
 # Icon for browser tab
-favicon: /img/fluid.png
+favicon: /img/logo.png
 
 # 用于苹果设备的图标
 # Icon for Apple touch
-apple_touch_icon: /img/fluid.png
+apple_touch_icon: /img/logo.png
 
 # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 # Title separator in browser tab, eg: article - site
@@ -221,20 +221,23 @@ font:
 
 # 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js
 # Specify the path of your custom js file, support list. The path is relative to the source directory, such as `/js/custom.js` corresponding to the directory `source/js/custom.js`
-custom_html: '
+custom_html: |
   <!--音乐-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script>
+    // 在加载 MetingJS 之前，覆盖默认的失效 API
+    var meting_api = 'https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&r=:r';
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
-  <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="8202248104" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#2D8CF0"></div>
-'
+  <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="8381507514" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#2D8CF0" data-autoplay="true"></div>
 
 custom_js:
-#  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js #头部上升气泡 
+  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js #头部上升气泡 
 #  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js # 樱花飘落
 #  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js # 大雪花飘落
-#  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js # 小雪花飘落
-#  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/timeDate.js # 运行时间
+  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js # 小雪花飘落
+  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/timeDate.js # 运行时间
 #  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/dianjichuzi.js # 鼠标点击出字 
 #  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js # 鼠标点击出小爱心❤ 
 #  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiantiao.js # 动态黑色线条 
@@ -249,7 +252,7 @@ custom_css:
   - //cdn.jsdelivr.net/gh/bynotes/texiao/source/css/daziyanse.css# 头部打字机颜色 
 #  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css # 头部打字机颜色效果渐变 
 #  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css# 滚动条颜色 
-#  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针 
+  - //cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针 
 
 # 网页访问统计
 # Analysis of website visitors
@@ -434,7 +437,6 @@ footer:
   # 页脚第一行文字的 HTML，建议保留 Fluid 的链接，用于向更多人推广本主题
   # HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people
   content: '
-    Created By <a href="https://github.com/CodingWKang" target="_blank"><span>BlueHole</span></a>
     <div style="font-size: 0.85rem">
       <span id="timeDate">载入天数...</span>
       <span id="times">载入时分秒...</span>
@@ -586,7 +588,7 @@ post:
       awl: 2
       # 每分钟阅读字数，如果大部分是技术文章可适度调低
       # Words per minute
-      wpm: 60
+      wpm: 30
 
     # 浏览量计数
     # Number of visits
@@ -739,7 +741,7 @@ post:
   # 评论插件
   # Comment plugin
   comments:
-    enable: true
+    enable: false
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
@@ -1030,12 +1032,6 @@ links:
       intro: "编程の路",
       link: "https://www.cnblogs.com/bluehole/",
       avatar: "/img/cnblogs.png"
-    }
-    - {
-      title: "科研",
-      intro: "编程の路",
-      link: "https://wuk.netlify.app/",
-      avatar: "/img/research.png"
     }
   # 当成员头像加载失败时，替换为指定图片
   # When the member avatar fails to load, replace the specified image

@@ -1,14 +1,13 @@
 ---
-title: CMake学习
-date: 2023-08-28 11:10:33
+title: CMake学习指南
+date: 2026-10-21 20:08:53
 tags:
-- C++
-categories: 
-- C++
+- CMake
+category:
+- 构建工具
 index_img: /imgs/CMake.png
+excerpt: 摘要：CMake 是跨平台构建工具，通过 CMakeLists.txt 配置项目。文档涵盖常用命令如 `cmake_minimum_required`、`project`、`add_executable` 等，并逐步讲解构建基本项目、添加库、设置使用要求、生成器表达式、安装测试、系统自省、自定义命令、打包安装程序、选择静态或共享库、导出配置以及打包调试与发布版本，帮助开发者掌握 CMake 的完整构建流程。
 ---
-
-# CMake学习
 
 > [CMake官方文档](https://cmake.org/cmake/help/latest/)
 
@@ -32,6 +31,13 @@ index_img: /imgs/CMake.png
 
 ## 1.构建一个基本项目
 
+这一节的目标很简单：用 CMake 编译一个 C++ 程序，让它在没有参数时打印版本号和用法，在有参数时计算平方根。
+
+整个项目的结构非常小，一个 CMakeLists.txt、一个 tutorial.cxx、一个 TutorialConfig.h.in。真正值得讲的是 configure_file 这一环。TutorialConfig.h.in 里写的是 #define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@，这里的 @...@ 是 CMake 的变量占位符。配置阶段，CMake 会把 project(Tutorial VERSION 1.0) 生成的 Tutorial_VERSION_MAJOR 和 Tutorial_VERSION_MINOR 替换进去，在构建目录里生成 TutorialConfig.h。也就是说，源码目录里只有模板，真正的头文件是配置时生成的。
+
+这就带来一个关键点：生成的头文件在 `${PROJECT_BINARY_DIR}`，不在源码目录。所以必须用 `target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}")`把它加入包含路径，否则 tutorial.cxx 里的 #include "TutorialConfig.h" 找不到文件。这一节其实在强调一个习惯：构建目录和源码目录是分离的，生成物应该放在构建目录，源码里只保留模板和源文件。
+
+tutorial.cxx 本身没有太多 CMake 相关的内容，它用 std::stod 把命令行参数转成 double，再调用 std::sqrt。唯一和 CMake 有关的是它包含了 TutorialConfig.h，并使用里面定义的版本宏。这一节结束后，你已经能用一个最小的 CMake 项目完成配置、构建、运行三步。
 ### 具体代码：
 
 #### CMakeLists.txt
@@ -83,7 +89,13 @@ int main(int argc, char* argv[])
 ```
 
 ## 2.添加库
+上一节的平方根直接写在主程序里，这一节开始把它抽成一个独立的库 MathFunctions，主程序通过链接这个库来使用它。
 
+项目结构因此变成两层：顶层 CMakeLists.txt 负责主程序，`MathFunctions/CMakeLists.txt` 负责库。顶层用 `add_subdirectory(MathFunctions)` 把子目录纳入构建，子目录里用 `add_library(MathFunctions MathFunctions.cxx)` 生成库目标。然后在顶层用 `target_link_libraries(Tutorial PUBLIC MathFunctions)` 把库链接给主程序，再用 `target_include_directories 把 MathFunctions` 目录加入包含路径，这样 tutorial.cxx 才能 #include "MathFunctions.h"。
+
+这一节还引入了一个可配置开关 `option(USE_MYMATH "..." ON)`。它的作用是让用户在配置时决定用自己实现的 mysqrt，还是用标准库的 std::sqrt。如果 USE_MYMATH 为 ON，CMake 会通过 `target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH")` 给库加一个编译宏，MathFunctions.cxx 里的 #ifdef USE_MYMATH 才会生效。同时再建一个静态库 SqrtLibrary 放 mysqrt.cxx，并把它链接进 MathFunctions。用户可以在配置时用 `cmake -DUSE_MYMATH=OFF ..` 关掉这个开关。
+
+这一节真正想传达的是"库的目标化"。不要用全局的 `include_directories` 和 `link_libraries`，而是用 target_* 命令把属性绑定到具体目标上。这样每个目标的依赖关系是清晰的，不会互相污染。
 ### 具体代码：
 
 #### CMakeLists.txt
@@ -156,11 +168,13 @@ endif()
 
 ```c++
 #pragma once
-namespace mathfunctions {
-namespace detail {
-double mysqrt(double x);
-}
-}
+namespace mathfunctions
+{
+    namespace detail
+    {
+        double mysqrt(double x);
+    }
+} // namespace mathfunctions
 ```
 
 #### MathFunctions/mysqrt.cxx
@@ -170,8 +184,7 @@ double mysqrt(double x);
 #include <iostream>
 namespace mathfunctions {
 namespace detail {
-double mysqrt(double x)
-{
+double mysqrt(double x) {
   if (x <= 0) {
     return 0;
   }
@@ -186,8 +199,8 @@ double mysqrt(double x)
   }
   return result;
 }
-}
-}
+} // namespace detail
+} // namespace mathfunctions
 ```
 
 #### MathFunctions/MathFunctions.h
@@ -222,7 +235,15 @@ double sqrt(double x)
 Tips: 编译命令`cmake -G "MinGW Makefiles" -DUSE_MYMATH=OFF ..`
 
 ## 3.添加库的使用要求
+这一节讲的是 CMake 里一个很重要的概念——使用要求，也就是 usage requirements。核心是 `INTERFACE`、`PUBLIC`、`PRIVATE` 这三个关键字。
 
+先要把它们的意思弄清楚。**PRIVATE 表示这个属性只影响自己，不传播给依赖方**；*INTERFACE 表示自己不用，只传播给依赖方*；***PUBLIC 则是自己用，也传播给依赖方***。这三个关键字决定了包含目录、链接库、编译选项这些东西会不会沿着依赖链传递下去。
+
+本节先创建了一个接口库 `tutorial_compiler_flags`，用 `add_library(... INTERFACE)` 生成，再用 `target_compile_features(... INTERFACE cxx_std_11) `给它加上 C++ 标准要求。接口库不产生实际的二进制文件，它的作用就是携带"要求"，任何链接它的目标都会自动获得这些要求。
+
+然后在` MathFunctions/CMakeLists.txt` 里，`target_include_directories(MathFunctions INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})` 用的是 INTERFACE 而不是 PUBLIC。原因是 MathFunctions.cxx 自己不需要额外包含自己的目录，但链接 MathFunctions 的人需要找到 MathFunctions.h。这正是使用要求的典型场景：我不用，但用我的人需要。
+
+这一节的关键收获是，不要到处写全局的 `include_directories`，而是用 `target_include_directories` 配合 INTERFACE、PUBLIC、PRIVATE 精确控制传播范围。这样项目的依赖关系才是可控的。
 ### 具体代码：
 
 #### CMakeLists.txt
@@ -358,7 +379,13 @@ double sqrt(double x)
 ```
 
 ## 4.添加生成器表达式
+这一节引入生成器表达式，用来根据编译器、语言、构建类型等条件动态生成编译选项。
 
+代码里先定义了两个变量，`gcc_like_cxx` 和`msvc_cxx`，它们分别对应"编译器是 GCC 系"和"编译器是 MSVC"这两个条件。`$<COMPILE_LANG_AND_ID:CXX,MSVC> `这种写法会在生成构建系统时求值，判断当前编译语言是不是 CXX、编译器 ID 是不是 MSVC。然后 `target_compile_options` 里用 $<条件:选项> 的形式，让不同编译器拿到不同的警告选项：GCC 系用` -Wall -Wextra -Wshadow -Wformat=2 -Wunused`，MSVC 用` /W3`。外面再套一层 `$<BUILD_INTERFACE:...>`，表示这些选项只在构建树里生效，不导出给安装后的使用者。
+
+这样写的好处是不需要写一堆 `if(MSVC)`、`if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")` 这样的分支，生成器表达式本身就能在生成阶段拿到足够的上下文信息，条件判断更精确，也更适合被复用。
+
+这一节还把 `USE_MYMATH`的默认值从 ON 改成了 OFF，说明这个开关是可以随时调整的，用户可以通过 `-DUSE_MYMATH=ON`打开。生成器表达式和前面的接口库配合起来，就能做到"不同编译器、不同构建类型、不同使用场景下，自动应用不同的编译选项"。
 ### 具体代码：
 
 #### CMakeLists.txt
@@ -498,6 +525,13 @@ double sqrt(double x)
 ```
 
 ## 5.安装和测试
+这一节分成两块：安装规则和测试。
+
+安装规则用 **install** 命令。`install(TARGETS Tutorial DESTINATION bin)` 把可执行文件装到 bin 目录，`install(FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h" DESTINATION include) `把生成的头文件装到 include 目录。在 `MathFunctions/CMakeLists.txt` 里，先把要安装的库收集到一个列表 `installable_libs` 里，再用 `if(TARGET SqrtLibrary)` 判断 SqrtLibrary 是否存在，存在就追加进去，最后统一 `install(TARGETS ${installable_libs} DESTINATION lib)`，把头文件 MathFunctions.h 和 mysqrt.h 装到 include。这里的 DESTINATION 都是相对于 CMAKE_INSTALL_PREFIX 的路径，安装时可以用 `cmake --install . --prefix /some/prefix` 指定前缀。
+
+测试部分用 **enable_testing()** 开启测试功能，再用 add_test 定义测试。`add_test(NAME Runs COMMAND Tutorial 25)` 表示运行 Tutorial 25 这个命令，`set_tests_properties(Usage PROPERTIES PASS_REGULAR_EXPRESSION "Usage:.*number")` 则用正则表达式判断输出是否匹配，匹配就算通过。后面还定义了一个 do_test 函数，把重复的测试定义封装起来，避免写一大堆样板代码。运行测试用 ctest，加 `--output-on-failure` 可以在失败时看到输出。
+
+这一节想说明的是，CMake 不只是构建工具，它还能管理安装和测试。ctest 是 CMake 自带的测试驱动，和 add_test 配合使用，能在本地或 CI 里统一跑测试。
 
 ### 安装
 
@@ -651,6 +685,7 @@ double sqrt(double x)
 ```
 
 ### 测试
+
 #### 具体代码：
 
 #### CMakeLists.txt
@@ -833,7 +868,9 @@ double sqrt(double x)
 ```
 
 ## 6.添加对测试仪表板的支持
+这一节把测试结果提交到 CDash，一个开源的测试仪表板。做法是把 `enable_testing()` 换成 `include(CTest)`，后者会自动调用 enable_testing()，同时引入 CDash 相关支持。然后添加一个 `CTestConfig.cmake`，里面设置项目名、夜间构建开始时间、CDash 的地址和提交路径。这些变量告诉 CTest：项目叫什么、往哪个 CDash 实例提交、提交到哪个路径。配置好之后，运行 `ctest -D Experimental` 就会执行测试并把结果上传到 CDash。
 
+这一节的实际意义在于，团队或 CI 环境下，测试结果需要集中展示，CDash 就是 CMake 生态里做这件事的工具。个人学习时如果不想提交，可以跳过这一步，但要知道 include(CTest) 是比 enable_testing() 更现代的做法，因为它把测试和仪表板支持一起引入了。
 ### 具体代码：
 
 #### CMakeLists.txt
@@ -1019,6 +1056,13 @@ double sqrt(double x)
 > Tips:运行`ctest -D Experimental`进行提交，提交成功后可访问[Test Dashboard网站](https://my.cdash.org/submit.php?project=CMakeTutorial)
 
 ## 7.添加系统自省
+这一节讲系统自省，也就是在配置阶段检查系统是否支持某些函数或头文件，而不是等到编译时才报错。
+
+关键在 `MathFunctions/CMakeLists.txt` 里引入 `CheckCXXSourceCompiles` 模块，然后用 `check_cxx_source_compiles` 尝试编译一小段代码。比如检查 std::log 是否可用，就写一段包含 <cmath> 并调用 std::log(1.0) 的代码；检查 std::exp 同理。如果编译成功，对应的变量 HAVE_LOG、HAVE_EXP 就会被设为真。接着用 `target_compile_definitions(SqrtLibrary PRIVATE "HAVE_LOG" "HAVE_EXP")` 把这些宏传给 SqrtLibrary。
+
+在 mysqrt.cxx 里，就可以用 `#if defined(HAVE_LOG) && defined(HAVE_EXP)` 来判断：如果两个函数都可用，就用 std::exp(std::log(x) * 0.5) 计算平方根；否则退回牛顿迭代。这样代码就能根据系统能力选择不同实现，而不是硬编码平台判断。
+
+这一节的重点是，CMake 可以在配置阶段做能力探测。类似模块还有 `CheckIncludeFile、CheckFunctionExists、CheckCXXCompilerFlag` 等，思路都是一样的：写一小段测试代码，尝试编译，根据结果设置变量，再用变量控制宏或选项。
 
 ### 具体代码：
 
@@ -1238,7 +1282,11 @@ double sqrt(double x)
 ```
 
 ## 8.添加自定义命令和生成的文件
+这一节讲如何用 CMake 在构建过程中生成文件。核心是 `MathFunctions/MakeTable.cmake`，里面先 `add_executable(MakeTable MakeTable.cxx)` 生成一个小工具，然后用 `add_custom_command` 定义一条自定义命令：输出是 ${CMAKE_CURRENT_BINARY_DIR}/Table.h，命令是运行 MakeTable 生成它，依赖是 MakeTable 目标。这样 CMake 就知道，要生成 Table.h，得先编译 MakeTable，再运行它。
 
+然后在 `MathFunctions/CMakeLists.txt` 里 `include(MakeTable.cmake)`，把 Table.h 列为 SqrtLibrary 的源文件之一。虽然它是头文件，但这样写能让 CMake 知道 SqrtLibrary 依赖 Table.h，而 Table.h 是由自定义命令生成的。再用 `target_include_directories(SqrtLibrary PRIVATE ${CMAKE_CURRENT_BINARY_DIR})` 让 mysqrt.cxx 能找到生成的 Table.h。mysqrt.cxx 里就可以 #include "Table.h"，并在 x 落在 [1, 10) 区间时用 sqrtTable 查表得到初始值，再继续牛顿迭代。
+
+这一节的重点是，CMake 可以在构建时生成源代码或头文件。add_custom_command 负责生成文件，add_custom_target 可以定义更顶层的自定义目标。生成的文件通常放在构建目录，不要污染源码目录。
 ### 具体代码：
 
 #### CMakeLists.txt
@@ -1477,6 +1525,10 @@ double sqrt(double x)
 ## 9.打包安装程序
 
 > Windows需要安装[NSIS](https://prdownloads.sourceforge.net/nsis/nsis-3.09-setup.exe?download)
+
+这一节讲如何用 CPack 生成安装包。在顶层 CMakeLists.txt 里引入 `InstallRequiredSystemLibraries`，它会自动把运行所需的系统库加入安装包，Windows 上尤其常见。然后设置 `CPACK_RESOURCE_FILE_LICENSE` 指定许可证文件，`CPACK_PACKAGE_VERSION_MAJOR` 和 `CPACK_PACKAGE_VERSION_MINOR` 指定包版本，`CPACK_SOURCE_GENERATOR` 设为 TGZ 表示源码包格式，最后 include(CPack) 启用 CPack。启用之后，运行 cpack 就会按照安装规则生成安装包，也可以用 -G 指定生成器，比如 cpack -G NSIS 在 Windows 上生成 NSIS 安装程序，`cpack -G TGZ` 生成压缩包。Windows 上要生成 NSIS 安装程序，需要先安装 NSIS。
+
+这一节的重点是，CMake 不只构建，还能打包。install 规则定义"装什么"，CPack 定义"打成什么格式"。两者配合，就能从同一份 CMake 配置里生成可分发的安装包。
 
 ### 具体代码：
 
@@ -1730,7 +1782,11 @@ double sqrt(double x)
 ```
 
 ## 10.选择静态或共享库
+这一节讲如何控制生成静态库还是共享库。代码里先设置 `CMAKE_ARCHIVE_OUTPUT_DIRECTORY、CMAKE_LIBRARY_OUTPUT_DIRECTORY、CMAKE_RUNTIME_OUTPUT_DIRECTORY`，分别控制静态库、共享库、可执行文件和 Windows DLL 的输出目录。然后 option(BUILD_SHARED_LIBS "Build using shared libraries" ON) 决定 add_library 默认生成共享库还是静态库：ON 就是共享库，OFF 就是静态库。
 
+在 Windows 上导出共享库需要处理符号导出，所以 MathFunctions.h 里用 #if defined(_WIN32) 加 `__declspec(dllexport)` 和 `__declspec(dllimport)`，并通过 `EXPORTING_MYMATH` 宏区分"编译库本身"和"使用库"两种情况。然后在 MathFunctions/CMakeLists.txt 里用 `target_compile_definitions(MathFunctions PRIVATE "EXPORTING_MYMATH")` 在编译库时定义这个宏。另外，共享库要求位置无关代码，所以 SqrtLibrary 用 `set_target_properties(... POSITION_INDEPENDENT_CODE ${BUILD_SHARED_LIBS})` 把 `POSITION_INDEPENDENT_CODE` 和 `BUILD_SHARED_LIBS` 绑定起来，生成共享库时开启，生成静态库时关闭。
+
+这一节的重点是，静态库和共享库的差异不只是文件后缀，还涉及符号导出、位置无关代码、运行时路径等问题。CMake 提供了 BUILD_SHARED_LIBS 这个开关，让同一份 CMakeLists.txt 可以灵活切换两种模式。
 ### 具体代码：
 
 #### CMakeLists.txt
@@ -1787,6 +1843,7 @@ include(CPack)
 ```
 
 #### CTestConfig.cmake
+
 ```cmake
 set(CTEST_PROJECT_NAME "CMakeTutorial")
 set(CTEST_NIGHTLY_START_TIME "00:00:00 EST")
@@ -1836,6 +1893,7 @@ int main(int argc, char *argv[])
 ```
 
 #### MathFunctions/MakeTable.cmake
+
 ```cmake
 add_executable(MakeTable MakeTable.cxx)
 target_link_libraries(MakeTable PRIVATE tutorial_compiler_flags)
@@ -1989,7 +2047,11 @@ namespace mathfunctions
 ```
 
 ## 11.添加导出配置
+这一节讲如何让别的 CMake 项目能通过 `find_package(MathFunctions) `使用你的库。核心是 `install(EXPORT ...)` 把目标导出成 `MathFunctionsTargets.cmake`，安装到 lib/cmake/MathFunctions。然后用 `configure_package_config_file` 根据 `Config.cmake.in`生成 `MathFunctionsConfig.cmake`，用 `write_basic_package_version_file` 生成版本文件，供 find_package 检查版本兼容性。最后用 install(FILES ...) 把这两个文件装到 lib/cmake/MathFunctions，再用 export(EXPORT ...) 在构建树里也导出一份，方便不安装直接使用。
 
+Config.cmake.in 的内容很简单，就是 @PACKAGE_INIT@ 加上一行 include("${CMAKE_CURRENT_LIST_DIR}/MathFunctionsTargets.cmake")。这样别的项目写 find_package(MathFunctions REQUIRED) 之后，就能直接 target_link_libraries(myapp PRIVATE MathFunctions)，CMake 会自动带上包含目录、链接库、编译选项等所有使用要求。
+
+同时，MathFunctions/CMakeLists.txt 里的包含目录要改成构建接口和安装接口分开：`$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> `和 `$<INSTALL_INTERFACE:include>`。这样在构建树里使用时包含源码目录，安装后使用时包含 include 目录。这一节的重点是现代 CMake 的包导出机制，它让库可以被其他项目以目标形式使用，而不是靠全局变量。
 ### 具体代码：
 
 #### CMakeLists.txt
@@ -2075,6 +2137,7 @@ include(CPack)
 ```
 
 #### CTestConfig.cmake
+
 ```cmake
 set(CTEST_PROJECT_NAME "CMakeTutorial")
 set(CTEST_NIGHTLY_START_TIME "00:00:00 EST")
@@ -2131,6 +2194,7 @@ int main(int argc, char *argv[])
 ```
 
 #### MathFunctions/MakeTable.cmake
+
 ```cmake
 add_executable(MakeTable MakeTable.cxx)
 target_link_libraries(MakeTable PRIVATE tutorial_compiler_flags)
@@ -2291,6 +2355,13 @@ namespace mathfunctions
 
 ## 12.打包调试和发布
 
+这一节讲如何同时打包 `Debug` 和 `Release` 两个版本。首先用 `set(CMAKE_DEBUG_POSTFIX d)` 设置 Debug 版本的目标名后缀，再用 `set_target_properties(Tutorial PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})` 把它应用到 Tutorial 目标上。这样 Debug 版本的可执行文件叫 Tutoriald，Release 版本叫 Tutorial，两者的库文件名也不会冲突，可以放在同一个目录里。
+
+然后是运行时路径的设置。if(APPLE) 下用 `@executable_path/../lib`，elseif(UNIX) 下用 $ORIGIN/../lib，分别对应 macOS 和 Linux 的运行时库搜索路径。这样安装后的可执行文件能找到同目录下的库。
+
+打包两个版本靠的是 `MultiCPackConfig.cmake`。它先 include("release/CPackConfig.cmake")，然后用 `CPACK_INSTALL_CMAKE_PROJECTS` 指定同时打包 Debug 和 Release 两个构建目录。使用方式是先分别用 `-DCMAKE_BUILD_TYPE=Debug` 和 `-DCMAKE_BUILD_TYPE=Release` 配置并构建两个目录，分别运行 cpack，最后用 `cpack --config MultiCPackConfig.cmake` 合并打包。另外，`MathFunctions/CMakeLists.txt` 里用 `set_property(TARGET MathFunctions PROPERTY VERSION "1.0.0")` 和 `set_property(TARGET MathFunctions PROPERTY SOVERSION "1")` 设置库的完整版本号和 ABI 版本号，影响共享库的文件名，比如 libMathFunctions.so.1。
+
+这一节的重点是，Debug 和 Release 可以共存，并且可以用 CPack 合并打包。同时共享库需要关注版本号和 RPATH，否则安装后可能找不到库。
 ### 具体代码：
 
 #### CMakeLists.txt
@@ -2379,6 +2450,7 @@ export(EXPORT MathFunctionsTargets
 ```
 
 #### CTestConfig.cmake
+
 ```cmake
 set(CTEST_PROJECT_NAME "CMakeTutorial")
 set(CTEST_NIGHTLY_START_TIME "00:00:00 EST")
@@ -2445,6 +2517,7 @@ int main(int argc, char *argv[])
 ```
 
 #### MathFunctions/MakeTable.cmake
+
 ```cmake
 add_executable(MakeTable MakeTable.cxx)
 target_link_libraries(MakeTable PRIVATE tutorial_compiler_flags)
@@ -2621,4 +2694,3 @@ namespace mathfunctions
 > 使用自定义配置文件将两个版本打包到一个版本中:`cpack --config MultiCPackConfig.cmake`
 
 完整版代码可见Gitee仓库：[CMakeStudy](https://gitee.com/CodingWK/CMakeStudy)
-
