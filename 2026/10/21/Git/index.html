@@ -16,24 +16,26 @@
   <meta name="author" content="BlueHole">
   <meta name="keywords" content="blog">
   
-    <meta name="description" content="记录学习过程的点滴！">
+    <meta name="description" content="Git  版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。  Git历史 Git 诞生于一个极富纷争大举创新的年代，Linux 内核开源项目有着为数众多的参与者。 绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上（1991－2002年间）。 到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git">
+<meta property="og:title" content="Git学习指南">
 <meta property="og:url" content="https://codingwkang.github.io/2026/10/21/Git/index.html">
 <meta property="og:site_name" content="编程の路">
-<meta property="og:description" content="记录学习过程的点滴！">
+<meta property="og:description" content="Git  版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。  Git历史 Git 诞生于一个极富纷争大举创新的年代，Linux 内核开源项目有着为数众多的参与者。 绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上（1991－2002年间）。 到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://codingwkang.github.io/imgs/Git.png">
 <meta property="article:published_time" content="2026-10-21T12:09:05.000Z">
-<meta property="article:modified_time" content="2026-10-21T12:14:04.489Z">
+<meta property="article:modified_time" content="2026-10-21T12:24:58.278Z">
 <meta property="article:author" content="BlueHole">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://codingwkang.github.io/imgs/Git.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Git | 编程の路</title>
+  <title>Git学习指南 | 编程の路</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git"></span>
+            <span id="subtitle" data-typed-text="Git学习指南"></span>
           
         </div>
 
@@ -243,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          4.6k 字
         
       </span>
     
@@ -254,7 +256,7 @@
         
         
         
-          1 分钟
+          39 分钟
         
       </span>
     
@@ -299,12 +301,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Git</h1>
+            <h1 id="seo-header">Git学习指南</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：4 分钟前
+                    本文最后更新于：6 分钟前
                   
                 
               </p>
@@ -312,7 +314,192 @@
             
               <div class="markdown-body">
                 
-                
+                <h2 id="Git">Git</h2>
+<blockquote>
+<p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p>
+</blockquote>
+<h3 id="Git历史">Git历史</h3>
+<p>Git 诞生于一个极富纷争大举创新的年代，Linux 内核开源项目有着为数众多的参与者。 绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上（1991－2002年间）。 到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码。到了 2005 年，开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 这就迫使 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统 Git。</p>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152108917-1984883504.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="初次运行Git前的配置">初次运行Git前的配置</h3>
+<h4 id="配置用户信息">配置用户信息</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global user.name &quot;John Doe&quot;<br>git config --global user.email &quot;johndoe@example.com&quot;<br></code></pre></td></tr></table></figure>
+<h4 id="查看配置信息">查看配置信息</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --list<br></code></pre></td></tr></table></figure>
+<h3 id="Git基础">Git基础</h3>
+<h4 id="初始化仓库">初始化仓库</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git init<br></code></pre></td></tr></table></figure>
+<h4 id="追踪文件">追踪文件</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git add .<br></code></pre></td></tr></table></figure>
+<h4 id="提交更新">提交更新</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git commit -m &quot;initial&quot;<br></code></pre></td></tr></table></figure>
+<h4 id="克隆仓库">克隆仓库</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git clone &lt;url&gt;<br></code></pre></td></tr></table></figure>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152143514-351515968.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h4 id="查看文件状态">查看文件状态</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git status<br></code></pre></td></tr></table></figure>
+<h5 id="状态简览">状态简览</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git status -s<br></code></pre></td></tr></table></figure>
+<ul>
+<li>未跟踪的文件：<code>??</code></li>
+<li>暂存区文件：<code>A</code></li>
+<li>修改过的文件：<code>M</code></li>
+</ul>
+<blockquote>
+<p>[!caution]</p>
+<p>输出有两栏，左栏表明暂存区状态，右栏表示的是工作区的状态。</p>
+</blockquote>
+<h4 id="忽略文件">忽略文件</h4>
+<blockquote>
+<p>一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。 通常都是些自动生成的文件，比如日志文件，或者编译过程中创建的临时文件等。 在这种情况下，我们可以创建一个名为 .gitignore的文件，列出要忽略的文件的模式。</p>
+</blockquote>
+<p>文件 <code>.gitignore</code> 的格式规范如下：</p>
+<p>• 所有空行或者以 # 开头的行都会被 Git 忽略。</p>
+<p>• 可以使用标准的 glob 模式匹配，它会递归地应用在整个工作区中。</p>
+<p>• 匹配模式可以以（/）开头防止递归。</p>
+<p>• 匹配模式可以以（/）结尾指定目录。</p>
+<p>• 要忽略指定模式以外的文件或目录，可以在模式前加上叹号（!）取反。</p>
+<h4 id="查看修改的部分">查看修改的部分</h4>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git diff<br></code></pre></td></tr></table></figure>
+<h5 id="查看已暂存的要添加到下次提交的内容">查看已暂存的要添加到下次提交的内容</h5>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git diff --staged<br></code></pre></td></tr></table></figure>
+<h4 id="跳过使用暂存区域直接提交">跳过使用暂存区域直接提交</h4>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git commit -a -m <span class="hljs-string">&#x27;added new benchmarks&#x27;</span><br></code></pre></td></tr></table></figure>
+<h4 id="从暂存区移除文件但是不想让Git继续跟踪">从暂存区移除文件但是不想让Git继续跟踪</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git rm --cached 文件名<br></code></pre></td></tr></table></figure>
+<h4 id="查看提交历史">查看提交历史</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git log<br></code></pre></td></tr></table></figure>
+<h4 id="取消暂存文件">取消暂存文件</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git reset HEAD &lt;file&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="撤销对文件的修改">撤销对文件的修改</h4>
+<blockquote>
+<p>改命令会使得对文件的任何修改都会消失——Git会用最近提交的版本覆盖它。<strong>危险！！！</strong></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout -- &lt;file&gt;<br></code></pre></td></tr></table></figure>
+<h3 id="远程仓库">远程仓库</h3>
+<h4 id="查看远程仓库">查看远程仓库</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote -v<br></code></pre></td></tr></table></figure>
+<h4 id="添加远程仓库">添加远程仓库</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote add &lt;shortname&gt; &lt;url&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="从远程仓库抓取与拉取">从远程仓库抓取与拉取</h4>
+<ol>
+<li>
+<p>访问远程仓库数据拉取还没有的数据</p>
+<blockquote>
+<p>只会将数据下载到本地仓库，不会自动合并或修改当前工作</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git fetch &lt;remote&gt;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>自动抓取后并合并远程分支到当前分支</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git pull<br></code></pre></td></tr></table></figure>
+<h4 id="推送到远程仓库">推送到远程仓库</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git push &lt;remote&gt; &lt;branch&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="查看远程仓库-2">查看远程仓库</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote show &lt;remote&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="远程仓库的重命名与移除">远程仓库的重命名与移除</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">重命名</span><br>git remote rename &lt;oldname&gt; &lt;newname&gt;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">移除</span><br>git remote rm &lt;shortname&gt;<br></code></pre></td></tr></table></figure>
+<h3 id="打标签">打标签</h3>
+<blockquote>
+<p>Git可以给仓库历史中的某一个提交打上标签，以示重要。</p>
+</blockquote>
+<h4 id="列出标签">列出标签</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git tag -l &quot;v1.0&quot;<br></code></pre></td></tr></table></figure>
+<h4 id="创建标签">创建标签</h4>
+<h5 id="备注标签">备注标签</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">git tag -a v1.0 -m &quot;version 1.0&quot;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看标签信息</span><br>git show v1.0<br></code></pre></td></tr></table></figure>
+<h5 id="轻量标签">轻量标签</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git tag v1.0-lw<br></code></pre></td></tr></table></figure>
+<h5 id="后期打标签">后期打标签</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git tag -a v1.0 部分校验和<br></code></pre></td></tr></table></figure>
+<h4 id="推送标签">推送标签</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">推送所有标签</span><br>git push origin --tags<br><span class="hljs-meta prompt_"># </span><span class="language-bash">推送指定标签</span><br>git push origin v1.0<br></code></pre></td></tr></table></figure>
+<h4 id="删除标签">删除标签</h4>
+<ol>
+<li>方式1</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">该命令不会从任何远程仓库中移除标签</span><br>git tag -d &lt;tagname&gt;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">更新仓库</span><br>git push &lt;remote&gt; :refs/tags/&lt;tagname&gt;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>方式2</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git push origin --delete &lt;tagname&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="检出标签">检出标签</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout -b version2 v1.0<br></code></pre></td></tr></table></figure>
+<h3 id="Git别名">Git别名</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global alias.co checkout<br>git config --global alias.br branch<br>git config --global alias.ci commit<br>git config --global alias.st status<br></code></pre></td></tr></table></figure>
+<h3 id="Git分支">Git分支</h3>
+<h4 id="查看所有分支">查看所有分支</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git branch<br></code></pre></td></tr></table></figure>
+<h4 id="分支创建">分支创建</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git branch &lt;分支名&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="分支切换">分支切换</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout &lt;分支名&gt;<br></code></pre></td></tr></table></figure>
+<h3 id="分支的新建与合并">分支的新建与合并</h3>
+<p>看一个简单的分支新建与分支合并的例子，实际工作中你可能会用到类似的工作流。 你将经历如下步骤：</p>
+<ol>
+<li>开发某个网站。</li>
+<li>为实现某个新的用户需求，创建一个分支。</li>
+<li>在这个分支上开展工作。</li>
+</ol>
+<p>正在此时，你突然接到一个电话说有个很严重的问题需要紧急修补。 你将按照如下方式来处理：</p>
+<ol>
+<li>切换到你的线上分支（production branch）。</li>
+<li>为这个紧急任务新建一个分支，并在其中修复它。</li>
+<li>在测试通过之后，切换回线上分支，然后合并这个修补分支，最后将改动推送到线上分支。</li>
+<li>切换回你最初工作的分支上，继续工作。</li>
+</ol>
+<h4 id="新建分支">新建分支</h4>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152207777-1966223671.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h5 id="新建分支并同时切换到新分支">新建分支并同时切换到新分支</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout -b iss53<br></code></pre></td></tr></table></figure>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152221790-22712818.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>假设你已经把你的修改全部提交了，这时你可以切换回 master分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout master<br></code></pre></td></tr></table></figure>
+<p>假如又出现一个紧急问题，你要修复这个紧急问题。 我们来建立一个 hotfix 分支，在该分支上工作直到问题解决：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout -b hotfix<br></code></pre></td></tr></table></figure>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152238410-1949753025.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>然后将 hotfix 分支合并回你的 master 分支来部署到线上：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout master<br>git merge hotfix<br></code></pre></td></tr></table></figure>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152251981-1126425027.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>关于这个紧急问题的解决方案发布之后，你准备回到被打断之前时的工作中。 然而，你应该先删除 hotfix 分支，因为你已经不再需要它了 —— master 分支已经指向了同一个位置。 你可以使用带 -d 选项的 git branch 命令来删除分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git branch -d hotfix<br>git checkout iss53<br></code></pre></td></tr></table></figure>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152313222-808623057.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>假设你已经修正了 #53 问题，并且打算将你的工作合并入 master 分支。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout master<br>git merge iss53<br>git branch -d iss53<br></code></pre></td></tr></table></figure>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152328267-1062265529.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152344269-1594861819.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h4 id="遇到冲突时的合并">遇到冲突时的合并</h4>
+<p>Git 会在有冲突的文件中加入标准的冲突解决标记，这样你可以打开这些包含冲突的文件然后手动解决冲突。 出现冲突的文件会包含一些特殊区段，看起来像下面这个样子：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html<br>&lt;div id=&quot;footer&quot;&gt;contact : email.support@github.com&lt;/div&gt;<br>=======<br>&lt;div id=&quot;footer&quot;&gt;<br> please contact us at support@github.com<br>&lt;/div&gt;<br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;&gt;&gt;&gt;&gt; iss53:index.html</span><br></code></pre></td></tr></table></figure>
+<p>这表示 HEAD 所指示的版本（也就是你的 master 分支所在的位置，因为你在运行 merge 命令的时候已经检出到了这个分支）在这个区段的上半部分（ <code>======</code> 的上半部分），而 iss53 分支所指示的版本在 <code>======</code> 的下半部分。 为了解决冲突，你必须选择使用由 <code>======</code> 分割的两部分中的一个，或者你也可以自行合并这些内容。 例如，你可以通过把这段内容换成下面的样子来解决冲突：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">&lt;div id=&quot;footer&quot;&gt;<br>please contact us at email.support@github.com<br>&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+<p>上述的冲突解决方案仅保留了其中一个分支的修改，并且 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, 和 <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>这些行被完全删除了。</p>
+<p>如果你想使用图形化工具来解决冲突，你可以运行 git mergetool，该命令会为你启动一个合适的可视化合并工具。</p>
+<h3 id="分支开发工作流">分支开发工作流</h3>
+<h4 id="长期分支">长期分支</h4>
+<p>因为 Git 使用简单的三方合并，所以就算在一段较长的时间内，反复把一个分支合并入另一个分支，也不是什么难事。 也就是说，在整个项目开发周期的不同阶段，你可以同时拥有多个开放的分支；你可以定期地把某些主题分支合并入其他分支中。</p>
+<p>许多使用 Git 的开发者都喜欢使用这种方式来工作，比如只在 master 分支上保留完全稳定的代码——有可能仅仅是已经发布或即将发布的代码。 他们还有一些名为 develop 或者 next 的平行分支，被用来做后续开发或者测试稳定性——这些分支不必保持绝对稳定，但是一旦达到稳定状态，它们就可以被合并入 master 分支了。 这样，在确保这些已完成的主题分支（短期分支，比如之前的 iss53 分支）能够通过所有测试，并且不会引入更多bug 之后，就可以合并入主干分支中，等待下一次的发布。</p>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152413685-2109239885.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h4 id="主题分支">主题分支</h4>
+<p>主题分支对任何规模的项目都适用。 主题分支是一种短期分支，它被用来实现单一特性或其相关工作。</p>
+<p>考虑这样一个例子，你在 master 分支上工作到 C1，这时为了解决一个问题而新建 iss91 分支，在 iss91 分支上工作到 C4，然而对于那个问题你又有了新的想法，于是你再新建一个 iss91v2 分支试图用另一种方法解决那个问题，接着你回到 master 分支工作了一会儿，你又冒出了一个不太确定的想法，你便在 C10 的时候新建一个 dumbidea 分支，并在上面做些实验。 你的提交历史看起来像下面这个样子：</p>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152430089-1358530792.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="变基">变基</h3>
+<p>在 <code>Git</code> 中整合来自不同分支的修改主要有两种方法：<code>merge</code> 以及 <code>rebase</code>。</p>
+<h4 id="变基基本操作">变基基本操作</h4>
+<p>一个开发任务分叉到两个不同分支，又各自提交了更新。</p>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152447588-1011025774.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>还有一种方法：你可以提取在 C4 中引入的补丁和修改，然后在 C3 的基础上应用一次。 在 Git 中，这种操作就叫做<code>变基（rebase）</code>。即：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout experiment<br>git rebase master<br></code></pre></td></tr></table></figure>
+<p>它的原理是首先找到这两个分支（即当前分支 experiment、变基操作的目标基底分支 master） 的最近共同祖先 C2，然后对比当前分支相对于该祖先的历次提交，提取相应的修改并存为临时文件， 然后将当前分支指向目标基底 C3, 最后以此将之前另存为临时文件的修改依序应用。</p>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152026584-225490404.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>现在回到 master 分支，进行一次快进合并:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout master<br>git merge experiment<br></code></pre></td></tr></table></figure>
+<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152043205-1799550800.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>变基会使得提交历史更加整洁。 你在查看一个经过变基的分支的历史记录时会发现，尽管实际的开发工作是并行的， 但它们看上去就像是串行的一样，提交历史是一条直线没有分叉。</p>
+
                 
               </div>
             
@@ -357,7 +544,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git</div>
+      <div>Git学习指南</div>
       <div>https://codingwkang.github.io/2026/10/21/Git/</div>
     </div>
     <div class="license-meta">
@@ -413,9 +600,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/10/21/C/" title="C">
+                      <a href="/2026/10/21/C/" title="C语言程序设计">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">C</span>
+                        <span class="hidden-mobile">C语言程序设计</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -423,8 +610,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/10/21/CMake/" title="CMake">
-                        <span class="hidden-mobile">CMake</span>
+                      <a href="/2026/10/21/CMake/" title="CMake学习指南">
+                        <span class="hidden-mobile">CMake学习指南</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
