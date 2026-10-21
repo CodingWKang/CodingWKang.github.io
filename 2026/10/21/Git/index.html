@@ -16,16 +16,16 @@
   <meta name="author" content="BlueHole">
   <meta name="keywords" content="blog">
   
-    <meta name="description" content="Git  版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。  Git历史 Git 诞生于一个极富纷争大举创新的年代，Linux 内核开源项目有着为数众多的参与者。 绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上（1991－2002年间）。 到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码">
+    <meta name="description" content="摘要：Git是一种分布式版本控制系统，用于记录文件内容变化，便于查阅特定版本。它由 Linus Torvalds 于 2005 年创建，最初为管理 Linux 内核开发。Git 支持初始化仓库、追踪文件、提交更新、克隆远程仓库等基础操作，并提供分支管理、合并、变基、打标签等功能，帮助开发者高效协作与维护代码历史。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git学习指南">
 <meta property="og:url" content="https://codingwkang.github.io/2026/10/21/Git/index.html">
 <meta property="og:site_name" content="编程の路">
-<meta property="og:description" content="Git  版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。  Git历史 Git 诞生于一个极富纷争大举创新的年代，Linux 内核开源项目有着为数众多的参与者。 绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上（1991－2002年间）。 到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码">
+<meta property="og:description" content="摘要：Git是一种分布式版本控制系统，用于记录文件内容变化，便于查阅特定版本。它由 Linus Torvalds 于 2005 年创建，最初为管理 Linux 内核开发。Git 支持初始化仓库、追踪文件、提交更新、克隆远程仓库等基础操作，并提供分支管理、合并、变基、打标签等功能，帮助开发者高效协作与维护代码历史。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://codingwkang.github.io/imgs/Git.png">
 <meta property="article:published_time" content="2026-10-21T12:09:05.000Z">
-<meta property="article:modified_time" content="2026-10-21T12:24:58.278Z">
+<meta property="article:modified_time" content="2026-10-21T12:51:45.280Z">
 <meta property="article:author" content="BlueHole">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
@@ -306,7 +306,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：21 分钟前
+                    本文最后更新于：4 分钟前
                   
                 
               </p>
@@ -320,7 +320,7 @@
 </blockquote>
 <h3 id="Git历史">Git历史</h3>
 <p>Git 诞生于一个极富纷争大举创新的年代，Linux 内核开源项目有着为数众多的参与者。 绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上（1991－2002年间）。 到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码。到了 2005 年，开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 这就迫使 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统 Git。</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152108917-1984883504.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152108917-1984883504.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="初次运行Git前的配置">初次运行Git前的配置</h3>
 <h4 id="配置用户信息">配置用户信息</h4>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global user.name &quot;John Doe&quot;<br>git config --global user.email &quot;johndoe@example.com&quot;<br></code></pre></td></tr></table></figure>
@@ -335,7 +335,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git commit -m &quot;initial&quot;<br></code></pre></td></tr></table></figure>
 <h4 id="克隆仓库">克隆仓库</h4>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git clone &lt;url&gt;<br></code></pre></td></tr></table></figure>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152143514-351515968.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152143514-351515968.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h4 id="查看文件状态">查看文件状态</h4>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git status<br></code></pre></td></tr></table></figure>
 <h5 id="状态简览">状态简览</h5>
@@ -451,24 +451,24 @@
 <li>切换回你最初工作的分支上，继续工作。</li>
 </ol>
 <h4 id="新建分支">新建分支</h4>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152207777-1966223671.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152207777-1966223671.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h5 id="新建分支并同时切换到新分支">新建分支并同时切换到新分支</h5>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout -b iss53<br></code></pre></td></tr></table></figure>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152221790-22712818.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152221790-22712818.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>假设你已经把你的修改全部提交了，这时你可以切换回 master分支：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout master<br></code></pre></td></tr></table></figure>
 <p>假如又出现一个紧急问题，你要修复这个紧急问题。 我们来建立一个 hotfix 分支，在该分支上工作直到问题解决：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout -b hotfix<br></code></pre></td></tr></table></figure>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152238410-1949753025.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152238410-1949753025.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>然后将 hotfix 分支合并回你的 master 分支来部署到线上：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout master<br>git merge hotfix<br></code></pre></td></tr></table></figure>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152251981-1126425027.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152251981-1126425027.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>关于这个紧急问题的解决方案发布之后，你准备回到被打断之前时的工作中。 然而，你应该先删除 hotfix 分支，因为你已经不再需要它了 —— master 分支已经指向了同一个位置。 你可以使用带 -d 选项的 git branch 命令来删除分支：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git branch -d hotfix<br>git checkout iss53<br></code></pre></td></tr></table></figure>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152313222-808623057.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152313222-808623057.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>假设你已经修正了 #53 问题，并且打算将你的工作合并入 master 分支。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout master<br>git merge iss53<br>git branch -d iss53<br></code></pre></td></tr></table></figure>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152328267-1062265529.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152328267-1062265529.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152344269-1594861819.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h4 id="遇到冲突时的合并">遇到冲突时的合并</h4>
 <p>Git 会在有冲突的文件中加入标准的冲突解决标记，这样你可以打开这些包含冲突的文件然后手动解决冲突。 出现冲突的文件会包含一些特殊区段，看起来像下面这个样子：</p>
@@ -481,23 +481,23 @@
 <h4 id="长期分支">长期分支</h4>
 <p>因为 Git 使用简单的三方合并，所以就算在一段较长的时间内，反复把一个分支合并入另一个分支，也不是什么难事。 也就是说，在整个项目开发周期的不同阶段，你可以同时拥有多个开放的分支；你可以定期地把某些主题分支合并入其他分支中。</p>
 <p>许多使用 Git 的开发者都喜欢使用这种方式来工作，比如只在 master 分支上保留完全稳定的代码——有可能仅仅是已经发布或即将发布的代码。 他们还有一些名为 develop 或者 next 的平行分支，被用来做后续开发或者测试稳定性——这些分支不必保持绝对稳定，但是一旦达到稳定状态，它们就可以被合并入 master 分支了。 这样，在确保这些已完成的主题分支（短期分支，比如之前的 iss53 分支）能够通过所有测试，并且不会引入更多bug 之后，就可以合并入主干分支中，等待下一次的发布。</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152413685-2109239885.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152413685-2109239885.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h4 id="主题分支">主题分支</h4>
 <p>主题分支对任何规模的项目都适用。 主题分支是一种短期分支，它被用来实现单一特性或其相关工作。</p>
 <p>考虑这样一个例子，你在 master 分支上工作到 C1，这时为了解决一个问题而新建 iss91 分支，在 iss91 分支上工作到 C4，然而对于那个问题你又有了新的想法，于是你再新建一个 iss91v2 分支试图用另一种方法解决那个问题，接着你回到 master 分支工作了一会儿，你又冒出了一个不太确定的想法，你便在 C10 的时候新建一个 dumbidea 分支，并在上面做些实验。 你的提交历史看起来像下面这个样子：</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152430089-1358530792.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152430089-1358530792.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="变基">变基</h3>
 <p>在 <code>Git</code> 中整合来自不同分支的修改主要有两种方法：<code>merge</code> 以及 <code>rebase</code>。</p>
 <h4 id="变基基本操作">变基基本操作</h4>
 <p>一个开发任务分叉到两个不同分支，又各自提交了更新。</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152447588-1011025774.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152447588-1011025774.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>还有一种方法：你可以提取在 C4 中引入的补丁和修改，然后在 C3 的基础上应用一次。 在 Git 中，这种操作就叫做<code>变基（rebase）</code>。即：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout experiment<br>git rebase master<br></code></pre></td></tr></table></figure>
 <p>它的原理是首先找到这两个分支（即当前分支 experiment、变基操作的目标基底分支 master） 的最近共同祖先 C2，然后对比当前分支相对于该祖先的历次提交，提取相应的修改并存为临时文件， 然后将当前分支指向目标基底 C3, 最后以此将之前另存为临时文件的修改依序应用。</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152026584-225490404.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152026584-225490404.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>现在回到 master 分支，进行一次快进合并:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout master<br>git merge experiment<br></code></pre></td></tr></table></figure>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152043205-1799550800.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152043205-1799550800.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>变基会使得提交历史更加整洁。 你在查看一个经过变基的分支的历史记录时会发现，尽管实际的开发工作是并行的， 但它们看上去就像是串行的一样，提交历史是一条直线没有分叉。</p>
 
                 

@@ -16,16 +16,16 @@
   <meta name="author" content="BlueHole">
   <meta name="keywords" content="blog">
   
-    <meta name="description" content="前置说明 为了更好地理解，我们创建一个真实的项目：一个简单的文本编辑器 edit，它由多个 C 源文件和头文件组成。 项目文件结构： 12345678910111213project&#x2F;├── Makefile├── main.c├── kbd.c├── command.c├── display.c├── insert.c├── search.c├── files.c├── utils.c├── d">
+    <meta name="description" content="摘要：该文档系统讲解了 GNU Make 的使用方法。以 &#96;edit&#96; 文本编辑器项目为例，介绍了 Makefile 的规则语法、变量定义与引用、条件指令、文本函数、隐式规则、配方执行等核心内容。重点阐述了目标与先决条件的依赖关系、自动变量、模式匹配及并行构建等机制，帮助读者掌握自动化编译与构建管理。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Make学习手册">
 <meta property="og:url" content="https://codingwkang.github.io/2026/10/21/Make/index.html">
 <meta property="og:site_name" content="编程の路">
-<meta property="og:description" content="前置说明 为了更好地理解，我们创建一个真实的项目：一个简单的文本编辑器 edit，它由多个 C 源文件和头文件组成。 项目文件结构： 12345678910111213project&#x2F;├── Makefile├── main.c├── kbd.c├── command.c├── display.c├── insert.c├── search.c├── files.c├── utils.c├── d">
+<meta property="og:description" content="摘要：该文档系统讲解了 GNU Make 的使用方法。以 &#96;edit&#96; 文本编辑器项目为例，介绍了 Makefile 的规则语法、变量定义与引用、条件指令、文本函数、隐式规则、配方执行等核心内容。重点阐述了目标与先决条件的依赖关系、自动变量、模式匹配及并行构建等机制，帮助读者掌握自动化编译与构建管理。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://codingwkang.github.io/imgs/Make.png">
 <meta property="article:published_time" content="2026-10-21T12:09:21.000Z">
-<meta property="article:modified_time" content="2026-10-21T12:29:08.585Z">
+<meta property="article:modified_time" content="2026-10-21T12:52:12.635Z">
 <meta property="article:author" content="BlueHole">
 <meta property="article:tag" content="Make">
 <meta name="twitter:card" content="summary_large_image">
@@ -306,7 +306,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：16 分钟前
+                    本文最后更新于：4 分钟前
                   
                 
               </p>

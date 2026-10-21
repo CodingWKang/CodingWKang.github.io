@@ -16,16 +16,16 @@
   <meta name="author" content="BlueHole">
   <meta name="keywords" content="blog">
   
-    <meta name="description" content="Qt是一个用C++语言编写的GUI跨平台类库，使用Qt可以为PC、服务器、移动设备甚至单片机开发各种应用。  1. Qt简介 Qt的实质上是用C++编写的大型类库，能够为跨平台应用开发提供完整的框架。Qt框架包含大量的类，支持GUI、数据库、网络、多媒体等各种应用的编程。 1.1 Qt的许可类型  商业许可。Qt的商业许可需要付费，一版是采取按年付费的方式，商业许可运行开发者不公开项目的源码。">
+    <meta name="description" content="摘要：Qt是用C++编写的跨平台应用开发框架，提供商业、GPL及LGPL三种许可。其GUI开发支持Qt Designer可视化设计与纯代码两种方式，核心机制为信号与槽和基于Q_OBJECT宏、Q_PROPERTY的元对象系统。项目通过qmake或CMake构建，经MOC、UIC、RCC预编译器将元对象、UI及资源文件转为标准C++后编译链接。框架模块分为Qt Essentials基础模块与Qt A">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Qt学习指南">
 <meta property="og:url" content="https://codingwkang.github.io/2026/10/21/Qt/index.html">
 <meta property="og:site_name" content="编程の路">
-<meta property="og:description" content="Qt是一个用C++语言编写的GUI跨平台类库，使用Qt可以为PC、服务器、移动设备甚至单片机开发各种应用。  1. Qt简介 Qt的实质上是用C++编写的大型类库，能够为跨平台应用开发提供完整的框架。Qt框架包含大量的类，支持GUI、数据库、网络、多媒体等各种应用的编程。 1.1 Qt的许可类型  商业许可。Qt的商业许可需要付费，一版是采取按年付费的方式，商业许可运行开发者不公开项目的源码。">
+<meta property="og:description" content="摘要：Qt是用C++编写的跨平台应用开发框架，提供商业、GPL及LGPL三种许可。其GUI开发支持Qt Designer可视化设计与纯代码两种方式，核心机制为信号与槽和基于Q_OBJECT宏、Q_PROPERTY的元对象系统。项目通过qmake或CMake构建，经MOC、UIC、RCC预编译器将元对象、UI及资源文件转为标准C++后编译链接。框架模块分为Qt Essentials基础模块与Qt A">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://codingwkang.github.io/imgs/Qt.png">
 <meta property="article:published_time" content="2026-10-21T12:09:34.000Z">
-<meta property="article:modified_time" content="2026-10-21T12:29:19.677Z">
+<meta property="article:modified_time" content="2026-10-21T12:55:34.070Z">
 <meta property="article:author" content="BlueHole">
 <meta property="article:tag" content="Qt">
 <meta name="twitter:card" content="summary_large_image">
@@ -306,7 +306,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：16 分钟前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -337,11 +337,11 @@
 <li>widget.cpp</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;widget.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;ui_widget.h&quot;</span></span><br><br>Widget::<span class="hljs-built_in">Widget</span>(QWidget *parent)<br>    : <span class="hljs-built_in">QWidget</span>(parent)<br>    , <span class="hljs-built_in">ui</span>(<span class="hljs-keyword">new</span> Ui::Widget)<br>&#123;<br>    ui-&gt;<span class="hljs-built_in">setupUi</span>(<span class="hljs-keyword">this</span>);<br>&#125;<br><br>Widget::~<span class="hljs-built_in">Widget</span>()<br>&#123;<br>    <span class="hljs-keyword">delete</span> ui;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015090807906-1981356975.png" srcset="/img/loading.gif" lazyload alt="CLFEGQDD"></p>
+<p><img src="/imgs/Qt/2106185-20261015090807906-1981356975.png" srcset="/img/loading.gif" lazyload alt="CLFEGQDD"></p>
 <h2 id="2-GUI设计基础">2. GUI设计基础</h2>
 <h3 id="2-1-GUI程序结构与运行机制">2.1 GUI程序结构与运行机制</h3>
 <h4 id="2-1-1-GUI文件组成">2.1.1 GUI文件组成</h4>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015090826737-1079961538.png" srcset="/img/loading.gif" lazyload alt="KD64U4NZ"></p>
+<p><img src="/imgs/Qt/2106185-20261015090826737-1079961538.png" srcset="/img/loading.gif" lazyload alt="KD64U4NZ"></p>
 <p>新建好一个Widget项目后，该项目包含以下一些文件：</p>
 <ul>
 <li>Hello.pro是qmake构建系统的项目配置文件，其中存储了项目的各种设置内容。</li>
@@ -353,9 +353,9 @@
 <h4 id="2-1-2-项目配置文件">2.1.2 项目配置文件</h4>
 <p>上文中的Hello.pro就是使用向导创建的Hello项目的项目配置文件，内容如下，具体内容可以参考官方的QMake手册：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c++">QT       += core gui<br><br><span class="hljs-built_in">greaterThan</span>(QT_MAJOR_VERSION, <span class="hljs-number">4</span>): QT += widgets<br><br>CONFIG += c++<span class="hljs-number">17</span><br><br># You can make your code fail to compile <span class="hljs-keyword">if</span> it uses deprecated APIs.<br># In order to <span class="hljs-keyword">do</span> so, uncomment the following line.<br>#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=<span class="hljs-number">0x060000</span>    <br><span class="hljs-meta"># disables all the APIs deprecated before Qt 6.0.0</span><br><br>SOURCES += \<br>    main.cpp \<br>    widget.cpp<br><br>HEADERS += \<br>    widget.h<br><br>FORMS += \<br>    widget.ui<br><br># Default rules <span class="hljs-keyword">for</span> deployment.<br>qnx: target.path = /tmp/$$&#123;TARGET&#125;/bin<br><span class="hljs-keyword">else</span>: unix:!android: target.path = /opt/$$&#123;TARGET&#125;/bin<br>!<span class="hljs-built_in">isEmpty</span>(target.path): INSTALLS += target<br></code></pre></td></tr></table></figure>
-<p>qmake是构建项目的工具软件，qmake的作用是根据项目配置文件中的设置生成Makefile文件，然后C++编译器就可以根据Makefile文件进行编译和链接，对于Qt项目，qmake还会自动为元对象编译器(MOC)和用户界面编译器(UIC)生成构建规则。 qt项目的配置文件是自动生成的，其常见变量的含义如下： <img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015090912170-1251881946.png" srcset="/img/loading.gif" lazyload alt="TN4QUMSS"></p>
+<p>qmake是构建项目的工具软件，qmake的作用是根据项目配置文件中的设置生成Makefile文件，然后C++编译器就可以根据Makefile文件进行编译和链接，对于Qt项目，qmake还会自动为元对象编译器(MOC)和用户界面编译器(UIC)生成构建规则。 qt项目的配置文件是自动生成的，其常见变量的含义如下： <img src="/imgs/Qt/2106185-20261015090912170-1251881946.png" srcset="/img/loading.gif" lazyload alt="TN4QUMSS"></p>
 <h4 id="2-1-3-窗口文件">2.1.3 窗口文件</h4>
-<p>Qt项目进行构建后，项目的根目录会生成一个ui_widget.h文件，与窗口相关的文件主要有4个，如下图所示：<img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015090856160-181577746.png" srcset="/img/loading.gif" lazyload alt="3H3SF8FY"></p>
+<p>Qt项目进行构建后，项目的根目录会生成一个ui_widget.h文件，与窗口相关的文件主要有4个，如下图所示：<img src="/imgs/Qt/2106185-20261015090856160-181577746.png" srcset="/img/loading.gif" lazyload alt="3H3SF8FY"></p>
 <ol>
 <li>文件widget.h</li>
 </ol>
@@ -385,7 +385,7 @@
 <h4 id="2-2-1-创建项目和资源文件">2.2.1 创建项目和资源文件</h4>
 <p>在Qt项目中，图标存储在资源文件里，通过新建文件，选择新建Qt资源文件，设置资源文件的文件名，并将其添加到当前项目里。资源文件主要功能是存储图标和图片文件，方便在程序中使用，在创建资源文件里首先需要创建一个前缀，前缀表示资源的分组。</p>
 <h4 id="2-2-2-窗口界面设计">2.2.2 窗口界面设计</h4>
-<p>双击.ui文件就可打开Qt Designer对窗口界面进行可视化设计。下面有一个.ui文件的主要组件的说明： <img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091003955-396489687.png" srcset="/img/loading.gif" lazyload alt="4THXULMM"><br>
+<p>双击.ui文件就可打开Qt Designer对窗口界面进行可视化设计。下面有一个.ui文件的主要组件的说明： <img src="/imgs/Qt/2106185-20261015091003955-396489687.png" srcset="/img/loading.gif" lazyload alt="4THXULMM"><br>
 值得说明的是这里面的界面组件的属性设置：</p>
 <ol>
 <li>对象名称就是指窗口上的组件的实例名称，界面上的每个组件都需要有一个唯一的对象名称。</li>
@@ -403,10 +403,10 @@
 <li>布局管理</li>
 </ol>
 <p>Qt为UI设计提供了丰富的布局管理功能。在Qt Designer里面，组件面板里有Layouts和Spacers两个分组。常用组件如下：</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091022569-636087821.png" srcset="/img/loading.gif" lazyload alt="ZQPLT5MS"></p>
+<p><img src="/imgs/Qt/2106185-20261015091022569-636087821.png" srcset="/img/loading.gif" lazyload alt="ZQPLT5MS"></p>
 <p>Qt Designer有一个工具栏，用于使得界面进入不同的设计状态，或进行布局设计，工具栏按钮功能如下：</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091057053-1646772154.png" srcset="/img/loading.gif" lazyload alt="MURTHEWW"></p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091110855-574308017.png" srcset="/img/loading.gif" lazyload alt="L6EET9VV"></p>
+<p><img src="/imgs/Qt/2106185-20261015091057053-1646772154.png" srcset="/img/loading.gif" lazyload alt="MURTHEWW"></p>
+<p><img src="/imgs/Qt/2106185-20261015091110855-574308017.png" srcset="/img/loading.gif" lazyload alt="L6EET9VV"></p>
 <p>使用工具栏上的布局按钮时，只需要在窗体上选中所需设计布局的组件，然后点击某个布局按钮，使用Ctrl键可进行多选，并且选择了某个容器组件相当于选择了其内部的所有组件。</p>
 <ol start="3">
 <li>伙伴关系与Tab顺序</li>
@@ -475,7 +475,7 @@
 <li>元对象系统和MOC</li>
 </ol>
 <p>Qt对C++标准进行了扩展，引入了元对象系统(MOS),所有从QObject继承的类都可以利用元对象系统提供的功能。元对象系统支持属性、信号与槽、动态类型转换等。</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091138148-963775375.png" srcset="/img/loading.gif" lazyload alt="QYYGSWAW"></p>
+<p><img src="/imgs/Qt/2106185-20261015091138148-963775375.png" srcset="/img/loading.gif" lazyload alt="QYYGSWAW"></p>
 <ol start="2">
 <li>UI文件和UIC</li>
 </ol>
@@ -527,22 +527,22 @@
 </ul>
 <h4 id="3-1-1-Qt基础模块">3.1.1 Qt基础模块</h4>
 <p>Qt框架的基础模块提供了Qt在所有平台上的基本功能，它们在所有开发平台上都可用。</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091204354-764508239.png" srcset="/img/loading.gif" lazyload alt="EII87KW3"></p>
+<p><img src="/imgs/Qt/2106185-20261015091204354-764508239.png" srcset="/img/loading.gif" lazyload alt="EII87KW3"></p>
 <p>Qt Core模块是Qt框架的核心，其他模块都依赖此模块。Qt GUI模块提供用于开发GUI应用程序的必要的类。</p>
 <h4 id="3-1-2-Qt附加模块">3.1.2 Qt附加模块</h4>
 <p>Qt附加模块是一些能够是实现特定功能的模块，用户安装Qt时可以选择性地安装这些附加模块。</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091217196-371677718.png" srcset="/img/loading.gif" lazyload alt="JRIVALF5"></p>
+<p><img src="/imgs/Qt/2106185-20261015091217196-371677718.png" srcset="/img/loading.gif" lazyload alt="JRIVALF5"></p>
 <p>Qt的模块很多。针对开发各种应用程序提供了丰富的功能。</p>
 <h3 id="3-2-Qt全局定义">3.2 Qt全局定义</h3>
 <p>头文件包含Qt框架中的一些全局定义，包括基本数据类型、函数和宏。一般的Qt类的头文件都会包含这个头文件，所有用户程序中无须包含这个头文件就可以使用其中的定义。</p>
 <h4 id="3-2-1-数据类型定义">3.2.1 数据类型定义</h4>
 <p>为了确保在各个平台上的各种基本数据类型都有统一确定的长度，Qt为各种常见数据类型定义了类型符号。</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091229908-514445459.png" srcset="/img/loading.gif" lazyload alt="LEM6IBN5"></p>
+<p><img src="/imgs/Qt/2106185-20261015091229908-514445459.png" srcset="/img/loading.gif" lazyload alt="LEM6IBN5"></p>
 <p>qreal默认表示8字节double类型的浮点数，若使用-qreal float选项进行配置，则表示4字节float类型浮点数。 qfloat16是Qt5.9中增加的一种类型，用于表示16位浮点型，需要注意<strong>qfloat16不是在头文件中定义</strong>，要使用qfloat16,需要包含头文件。</p>
 <h4 id="3-2-2-函数">3.2.2 函数</h4>
 <p>头文件中包含一些常用函数的定义，这些函数大多以模板类型作为输入和输出参数类型。常用的全局函数定义如下：</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091240266-1959738749.png" srcset="/img/loading.gif" lazyload alt="XRQZ5IT8"></p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091249601-424669457.png" srcset="/img/loading.gif" lazyload alt="6ZVRTN6L"></p>
+<p><img src="/imgs/Qt/2106185-20261015091240266-1959738749.png" srcset="/img/loading.gif" lazyload alt="XRQZ5IT8"></p>
+<p><img src="/imgs/Qt/2106185-20261015091249601-424669457.png" srcset="/img/loading.gif" lazyload alt="6ZVRTN6L"></p>
 <p>涉及到基础的数学运算函数在头文件中定义。</p>
 <h4 id="3-2-3-宏定义">3.2.3 宏定义</h4>
 <p>头文件中定义了很多宏，其中包括：</p>
@@ -567,7 +567,7 @@
 <li>QObject类</li>
 </ol>
 <p>QObject类是所有使用元对象系统的类的基类。即如果一个类的父类或上层父类是QObject，它就可以使用信号与槽、属性等特性。</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091300779-1619168865.png" srcset="/img/loading.gif" lazyload alt="3GAPMDBS"></p>
+<p><img src="/imgs/Qt/2106185-20261015091300779-1619168865.png" srcset="/img/loading.gif" lazyload alt="3GAPMDBS"></p>
 <p>元对象系统的特性是通过QObject的一些函数来实现的。</p>
 <p>（1）元对象。每个QObject及其子类的示例都有一个元对象，这个元对象是自动创建的。静态变量staticMetaObject就是这个元对象，函数metaObject()返回这个元对象指针，所以有两种方式获取一个对象的元对象：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++">QPushButton *btn =<span class="hljs-keyword">new</span> <span class="hljs-built_in">QPushButton</span>();<br><span class="hljs-type">const</span> QMetaObject *metaPtr=btn-&gt;<span class="hljs-built_in">metaObject</span>();<br><span class="hljs-type">const</span> QMetaObject metaObj=btn-&gt;staticMetaObject;<br></code></pre></td></tr></table></figure>
@@ -581,8 +581,8 @@
 </ol>
 <p>每个QObject及其子类的实例都有一个自动创建的元对象，元对象是QMetaObject类型的实例。元对象存储了了的实例所属类的各种元数据，包括类信息元数据、方法元数据、属性元数据，所以，元对象本质上是对类的描述。</p>
 <p>QMetaObject类的主要接口如下所示：</p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091314014-808165972.png" srcset="/img/loading.gif" lazyload alt="JDFXV7PJ"></p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202610/2106185-20261015091323833-1010356924.png" srcset="/img/loading.gif" lazyload alt="H4GTQLZI"></p>
+<p><img src="/imgs/Qt/2106185-20261015091314014-808165972.png" srcset="/img/loading.gif" lazyload alt="JDFXV7PJ"></p>
+<p><img src="/imgs/Qt/2106185-20261015091323833-1010356924.png" srcset="/img/loading.gif" lazyload alt="H4GTQLZI"></p>
 <p>通过QMetaObject类的这些函数，可以在运行时获取一个QObject对象的类信息和各种元数据。</p>
 <h4 id="3-3-2-运行时类型信息">3.3.2 运行时类型信息</h4>
 <p>通过使用QObject和QMetaObject提供的接口函数，可以在运行时获得一个对象的类名称以及其父类的名称，判断其是否从某个类继承而来。</p>
