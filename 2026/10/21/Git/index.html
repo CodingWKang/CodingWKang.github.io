@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://codingwkang.github.io/imgs/Git.png">
 <meta property="article:published_time" content="2026-10-21T12:09:05.000Z">
-<meta property="article:modified_time" content="2026-10-21T12:51:45.280Z">
+<meta property="article:modified_time" content="2026-10-21T13:02:57.170Z">
 <meta property="article:author" content="BlueHole">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
@@ -306,7 +306,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：4 分钟前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -469,7 +469,7 @@
 <p>假设你已经修正了 #53 问题，并且打算将你的工作合并入 master 分支。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">git checkout master<br>git merge iss53<br>git branch -d iss53<br></code></pre></td></tr></table></figure>
 <p><img src="/imgs/Git/2106185-20260930152328267-1062265529.png" srcset="/img/loading.gif" lazyload alt="image"></p>
-<p><img src="https://img2024.cnblogs.com/blog/2106185/202609/2106185-20260930152344269-1594861819.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/imgs/Git/2106185-20260930152344269-1594861819.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h4 id="遇到冲突时的合并">遇到冲突时的合并</h4>
 <p>Git 会在有冲突的文件中加入标准的冲突解决标记，这样你可以打开这些包含冲突的文件然后手动解决冲突。 出现冲突的文件会包含一些特殊区段，看起来像下面这个样子：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html<br>&lt;div id=&quot;footer&quot;&gt;contact : email.support@github.com&lt;/div&gt;<br>=======<br>&lt;div id=&quot;footer&quot;&gt;<br> please contact us at support@github.com<br>&lt;/div&gt;<br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;&gt;&gt;&gt;&gt; iss53:index.html</span><br></code></pre></td></tr></table></figure>
