@@ -71,7 +71,6 @@
 
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/daziyanse.css# 头部打字机颜色.css">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css# 鼠标指针.css">
 
 
@@ -308,7 +307,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：11 分钟前
+                    本文最后更新于：16 分钟前
                   
                 
               </p>
@@ -921,7 +920,16 @@ va_list类型用于声明一个变量，该变量将依次引用各参数。宏v
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-           <!--音乐--> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"> <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script> <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="8381507514" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#2D8CF0"></div> 
+          <!--音乐-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<script>
+  // 在加载 MetingJS 之前，覆盖默认的失效 API
+  var meting_api = 'https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&r=:r';
+</script>
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+<div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="8381507514" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#2D8CF0"></div>
+
         </div>
       </div>
     
@@ -1111,7 +1119,9 @@ va_list类型用于声明一个变量，该变量将依次引用各参数。宏v
 
 
   
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
 <script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/daxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/timeDate.js"></script>
 <script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/boom.js"></script>
 
 
